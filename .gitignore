@@ -1,0 +1,7 @@
+.import/
+.project/
+.godot/
+.vscode/
+.vs/
+*.tmp
+builds/
