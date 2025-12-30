@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c10aen1wj72w4"]
+
+[ext_resource type="Script" uid="uid://b2nfjsoh8rop0" path="res://source/singletons/audio_manager.gd" id="1_b15hf"]
+[ext_resource type="AudioStream" uid="uid://erhdltfpxi2r" path="res://assets/sfx/blip.wav" id="2_iuqny"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_b15hf")
+
+[node name="TestBeep" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_iuqny")
+bus = &"SFX"
