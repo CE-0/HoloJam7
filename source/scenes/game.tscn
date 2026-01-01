@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://djgxo0lq476rf"]
+
+[node name="game" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Time Display" type="Label" parent="Camera2D"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Timer" type="Timer" parent="."]
