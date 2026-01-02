@@ -16,6 +16,9 @@ func _process(_delta: float) -> void:
 	pass
 
 func add_card(new_card: Card) -> void:
+	if new_card == null:
+		return
+
 	held_cards.append(new_card) # need to come up with a sorting method later
 	#held_cards.insert(randi_range(0,held_cards.size()), new_card)
 	new_card.reparent(self)

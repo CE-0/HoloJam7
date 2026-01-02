@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bksmk5evfkfln"]
+
+[ext_resource type="PackedScene" uid="uid://b2ii1dwbjera2" path="res://source/gui/menus/pause_menu.tscn" id="1_i7gob"]
+[ext_resource type="Script" uid="uid://densox0ndrugk" path="res://source/settings/dev_room_1.gd" id="1_l6tno"]
+[ext_resource type="PackedScene" uid="uid://d2h77cacxh2qp" path="res://source/scenes/hand.tscn" id="2_5olku"]
+[ext_resource type="PackedScene" uid="uid://cjbwls52odjlx" path="res://source/scenes/draw_pile.tscn" id="4_l6tno"]
+
+[node name="DevRoom1" type="Node"]
+script = ExtResource("1_l6tno")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("1_i7gob")]
+visible = false
+
+[node name="Hand" parent="." instance=ExtResource("2_5olku")]
+position = Vector2(960, 862)
+
+[node name="DrawPile" parent="." instance=ExtResource("4_l6tno")]
+position = Vector2(93, 957)
+
+[node name="DiscardPile" parent="." instance=ExtResource("4_l6tno")]
+position = Vector2(1789, 957)
