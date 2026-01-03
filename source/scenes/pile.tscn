@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cjbwls52odjlx"]
 
-[ext_resource type="Script" uid="uid://bbcoiyjkx2cx8" path="res://source/scripts/draw_pile.gd" id="1_fxp1r"]
+[ext_resource type="Script" uid="uid://bbcoiyjkx2cx8" path="res://source/scripts/pile.gd" id="1_fxp1r"]
 [ext_resource type="Texture2D" uid="uid://kagyq5irug3t" path="res://icon.svg" id="2_5tyg0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5tyg0"]

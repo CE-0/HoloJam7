@@ -1,14 +1,17 @@
 extends Node
 
+# Running everything out of this test room
+# Wont be final just a place to be messy and try stuff
+
 var card_scene = preload("res://source/scenes/card.tscn")
 
-# Called when the node enters the scene tree for the first time.
+var cards = []
+
 func _ready() -> void:
-	pass # Replace with function body.
+	SignalBus.discard.connect(_on_discard)
+	SignalBus.pile_empty.connect(_on_pile_empty)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 	if Input.is_action_just_pressed("debug_0"):
 		pass
@@ -25,4 +28,16 @@ func _process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("debug_9"):
 		var card = card_scene.instantiate()
+		cards.append(card)
 		$DrawPile.add_card(card)
+
+func _on_discard(card: Card) -> void:
+	$Hand.take_card(card)
+	$DiscardPile.place_card(card)
+
+func _on_pile_empty(pile: Pile) -> void:
+	# If there's very few cards so both packs are empty, it can cause some soft locks
+	if pile == $DrawPile:
+		var pack = $DiscardPile.remove_all_cards()
+		if pack.size() > 0:
+			$DrawPile.add_cards(pack)

@@ -7,7 +7,7 @@ extends StaticBody2D
 }
 
 enum State {
-	READY,
+	PILE,
 	HELD,
 	FOCUS	# Looking closer at the card in the hand
 }
@@ -67,8 +67,21 @@ func set_neutral_transform(transform_n: Transform2D, zidx: int) -> void:
 	tween_t.tween_property(self, "transform", neutral_transform, 0.3)
 	self.z_index = zidx
 
+	current_state = State.HELD
+
 func _on_mouse_entered() -> void:
 	self.focus_on()
 
 func _on_mouse_exited() -> void:
 	self.unfocus()
+
+func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	pass
+	if current_state == State.FOCUS:
+		if Input.is_action_just_pressed("play_card"):
+			pass
+			#print("Playing card!")
+		if Input.is_action_just_pressed("reroll_card"):
+			#print("Discarding card!")
+			current_state = State.PILE
+			SignalBus.discard.emit(self)

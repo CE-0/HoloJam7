@@ -4,7 +4,7 @@ extends Node2D
 # Selection of cards available for use by the player
 # Arranges the cards for easy viewing and selection by player
 
-const HAND_WIDTH: float = 1000.0
+const HAND_WIDTH: float = 500.0
 
 var held_cards: Array[Card] = []
 var focused_card: Card = null
@@ -22,7 +22,18 @@ func add_card(new_card: Card) -> void:
 	held_cards.append(new_card) # need to come up with a sorting method later
 	#held_cards.insert(randi_range(0,held_cards.size()), new_card)
 	new_card.reparent(self)
+	new_card.current_state = Card.State.HELD # This shouldn't be here
 	arrange_cards()
+
+func take_card(card: Card) -> bool:
+	# take card from hand
+	var idx = held_cards.find(card)
+	if idx == -1: 
+		return false
+	
+	held_cards.pop_at(idx)
+	arrange_cards()
+	return true
 
 func set_hand_focus(card: Card) -> void:
 	# focus on new given card and release focus from previous
