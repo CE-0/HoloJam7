@@ -13,6 +13,7 @@ script = ExtResource("1_vbr0r")
 [node name="sprites" type="Node2D" parent="."]
 
 [node name="card template" type="Sprite2D" parent="sprites"]
+modulate = Color(0.49747366, 0.49747366, 0.49747366, 1)
 scale = Vector2(1, 1.6)
 texture = ExtResource("2_onr8g")
 
@@ -21,6 +22,16 @@ texture = ExtResource("2_onr8g")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("RectangleShape2D_onr8g")
+
+[node name="NameLabel" type="Label" parent="."]
+offset_left = -56.0
+offset_top = -98.0
+offset_right = 55.0
+offset_bottom = -70.0
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

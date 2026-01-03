@@ -1,8 +1,13 @@
 class_name Card
 extends StaticBody2D
 
+@export var card_name: String
+@export var image_path: String
+@export var cost: float
 @export var tasteDict : Dictionary = {
-	"sweet" : 0, 
+	"sweet" : 0,
+	"salty": 0,
+	"sour": 0,
 	"umami" : 0
 }
 
@@ -21,11 +26,23 @@ var neutral_z_idx: int
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
+	#$"sprites/card template".texture = load("res://icon.svg")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func setup_from_data(name_c: String) -> void:
+	# Setup card info with given data
+	card_name = name_c
+	$NameLabel.text = card_name
+
+func setup_from_card_num(num: int) -> void:
+	# Look up the given card number in the cube and setup with that info
+	var info = CardCube.get_card_info(num)
+	card_name = info["name"]
+	$NameLabel.text = card_name
 
 func focus_on() -> void:
 	# transform the card so it's easier to read
