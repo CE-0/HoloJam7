@@ -8,9 +8,9 @@ var card_scene = preload("res://source/scenes/card.tscn")
 var cards = []
 
 func _ready() -> void:
-	SignalBus.discard.connect(_on_discard)
-	SignalBus.pile_empty.connect(_on_pile_empty)
-
+	GameManager.draw_pile = $DrawPile
+	GameManager.discard_pile = $DiscardPile
+	GameManager.hand = $Hand
 
 func _process(_delta: float) -> void:
 	pass
@@ -32,14 +32,3 @@ func _process(_delta: float) -> void:
 		card.setup_from_card_num(randi_range(0,4))
 		cards.append(card)
 		$DrawPile.add_card(card)
-
-func _on_discard(card: Card) -> void:
-	$Hand.take_card(card)
-	$DiscardPile.place_card(card)
-
-func _on_pile_empty(pile: Pile) -> void:
-	# If there's very few cards so both packs are empty, it can cause some soft locks
-	if pile == $DrawPile:
-		var pack = $DiscardPile.remove_all_cards()
-		if pack.size() > 0:
-			$DrawPile.add_cards(pack)

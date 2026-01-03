@@ -14,7 +14,8 @@ extends StaticBody2D
 enum State {
 	PILE,
 	HELD,
-	FOCUS	# Looking closer at the card in the hand
+	FOCUS,	# Looking closer at the card in the hand
+	TAPPED
 }
 
 var current_state: int = State.HELD
@@ -107,6 +108,20 @@ func set_neutral_transform(transform_n: Transform2D, zidx: int) -> void:
 
 	current_state = State.HELD
 
+func tap() -> void:
+	# Select the card for play
+	# Play animations and update states
+	if current_state != State.FOCUS:
+		return
+
+	current_state = State.TAPPED
+	# TODO: real animation / feedback
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property(self, "position", self.position + Vector2(0,-400), 0.1)
+	await tween.finished
+	await get_tree().create_timer(0.5).timeout
+	SignalBus.card_tapped.emit(self)
+
 func _on_mouse_entered() -> void:
 	self.focus_on()
 
@@ -117,9 +132,8 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	pass
 	if current_state == State.FOCUS:
 		if Input.is_action_just_pressed("play_card"):
-			pass
-			print("Playing card!")
-			SignalBus.card_tapped.emit(self)
+			#print("Playing card!")
+			self.tap()
 		if Input.is_action_just_pressed("reroll_card"):
 			#print("Discarding card!")
 			current_state = State.PILE

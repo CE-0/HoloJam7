@@ -1,15 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://bksmk5evfkfln"]
+[gd_scene load_steps=6 format=3 uid="uid://bksmk5evfkfln"]
 
 [ext_resource type="PackedScene" uid="uid://b2ii1dwbjera2" path="res://source/gui/menus/pause_menu.tscn" id="1_i7gob"]
 [ext_resource type="Script" uid="uid://densox0ndrugk" path="res://source/settings/dev_room_1.gd" id="1_l6tno"]
 [ext_resource type="PackedScene" uid="uid://d2h77cacxh2qp" path="res://source/scenes/hand.tscn" id="2_5olku"]
+[ext_resource type="PackedScene" uid="uid://cstfh15tab36h" path="res://source/gui/dev_hud.tscn" id="3_yeh31"]
 [ext_resource type="PackedScene" uid="uid://cjbwls52odjlx" path="res://source/scenes/pile.tscn" id="4_l6tno"]
 
 [node name="DevRoom1" type="Node"]
 script = ExtResource("1_l6tno")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
+
+[node name="Hud" parent="CanvasLayer" instance=ExtResource("3_yeh31")]
+mouse_filter = 1
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("1_i7gob")]
 visible = false

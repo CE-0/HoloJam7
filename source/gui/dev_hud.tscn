@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://cstfh15tab36h"]
+
+[ext_resource type="Script" uid="uid://cx8bepibgnw4y" path="res://source/gui/dev_hud.gd" id="1_8yjoi"]
+
+[node name="Hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8yjoi")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1298.0
+offset_top = 218.0
+offset_right = 1541.0
+offset_bottom = 293.0
+text = "Serve"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
