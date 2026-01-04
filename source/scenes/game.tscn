@@ -9,3 +9,6 @@ offset_right = 40.0
 offset_bottom = 23.0
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="Music Player" type="AudioStreamPlayer2D" parent="."]
+bus = &"Music"

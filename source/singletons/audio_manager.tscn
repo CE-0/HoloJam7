@@ -1,11 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://c10aen1wj72w4"]
+[gd_scene load_steps=5 format=3 uid="uid://c10aen1wj72w4"]
 
 [ext_resource type="Script" uid="uid://b2nfjsoh8rop0" path="res://source/singletons/audio_manager.gd" id="1_b15hf"]
 [ext_resource type="AudioStream" uid="uid://erhdltfpxi2r" path="res://assets/sfx/blip.wav" id="2_iuqny"]
+[ext_resource type="AudioStream" uid="uid://2ip82mpjidfu" path="res://assets/sfx/bell_done.wav" id="3_dswmj"]
+[ext_resource type="AudioStream" uid="uid://cl3ief25lj6ou" path="res://assets/sfx/vegetable_chop.wav" id="4_2f4op"]
 
-[node name="AudioManager" type="Node"]
+[node name="AudioManager" type="Node2D"]
 script = ExtResource("1_b15hf")
 
 [node name="TestBeep" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_iuqny")
+bus = &"SFX"
+
+[node name="BellDone" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_dswmj")
+bus = &"SFX"
+
+[node name="Chop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_2f4op")
 bus = &"SFX"

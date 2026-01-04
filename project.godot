@@ -21,6 +21,7 @@ AudioManager="*res://source/singletons/audio_manager.tscn"
 SignalBus="*res://source/singletons/signal_bus.gd"
 CardCube="*res://source/scripts/cube.gd"
 GameManager="*res://source/singletons/GameManager.gd"
+Global="*res://source/scripts/Global.gd"
 
 [debug]
 
