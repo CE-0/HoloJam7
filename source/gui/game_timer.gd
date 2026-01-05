@@ -24,6 +24,7 @@ func start() -> void:
 
 func decrement_time(value_s: float) -> void:
 	time_left_s = time_left_s - value_s
+	time_left_s = max(time_left_s, 0.0)
 	update_face()
 	if time_left_s <= 0.0:
 		running = false

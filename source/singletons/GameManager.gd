@@ -7,6 +7,7 @@ extends Node
 # Mostly just don't know if that messes up the visible scope of objects
 
 const MAX_CARDS_PER_HAND: int = 5
+const REROLL_COST: int = 1
 
 # State machine for day loop
 enum DayState {
@@ -130,9 +131,11 @@ func _on_discard(card: Card) -> void:
 func _on_reroll(card: Card) -> void:
 	hand.take_card(card)
 	discard_pile.place_card(card)
+	SignalBus.time_penalty.emit(REROLL_COST)
 	draw_card_to_hand()
 
 func _on_card_tapped(card: Card) -> void:
+	SignalBus.time_penalty.emit(card.get_cost())
 	add_values_to_dish(card.get_taste_values())
 	hand.take_card(card)
 	discard_pile.place_card(card)
