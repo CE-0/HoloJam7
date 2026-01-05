@@ -18,7 +18,7 @@ func load_json_file(filePath: String) -> Dictionary:
 		return {}
 
 	var dataFile = FileAccess.open(filePath, FileAccess.READ)
-	var parsed = JSON.parse_string(dataFile.get_as_text())
+	var parsed = JSON.parse_string(dataFile.get_as_text()) 
 	return parsed
 
 func get_card_info(card_num: int) -> Dictionary:
