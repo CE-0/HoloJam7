@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cstfh15tab36h"]
+[gd_scene load_steps=4 format=3 uid="uid://cstfh15tab36h"]
 
 [ext_resource type="Script" uid="uid://cx8bepibgnw4y" path="res://source/gui/dev_hud.gd" id="1_8yjoi"]
+[ext_resource type="PackedScene" uid="uid://bo2bw31wdobah" path="res://source/gui/game_timer.tscn" id="2_c2ini"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8yjoi"]
 font_size = 19
@@ -110,5 +111,12 @@ unique_name_in_owner = true
 layout_mode = 0
 offset_right = 312.0
 offset_bottom = 54.0
+
+[node name="GameTimer" parent="." instance=ExtResource("2_c2ini")]
+layout_mode = 0
+offset_left = 117.0
+offset_top = 175.0
+offset_right = 117.0
+offset_bottom = 175.0
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

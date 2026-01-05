@@ -9,8 +9,13 @@ extends Node
 const MAX_CARDS_PER_HAND: int = 5
 
 # State machine for day loop
-
-
+enum DayState {
+	SETUP, # Start of day phase, player can look at and manage deck
+	ORDER, # Order loop is executing
+	FAIL, # Reset current day
+	PASS # After orders update deck and get ready for new day
+}
+var day_state: DayState = DayState.SETUP
 
 # These are filled externally
 var draw_pile: Pile
@@ -18,6 +23,7 @@ var discard_pile: Pile
 var hand: Hand
 var HUD: DevHUD
 var order_machine: OrderStateMachine
+var game_timer: GameTimer
 
 var current_order: Order
 
@@ -34,13 +40,22 @@ func _ready() -> void:
 	SignalBus.reroll.connect(_on_reroll)
 	SignalBus.card_tapped.connect(_on_card_tapped)
 	SignalBus.pile_empty.connect(_on_pile_empty)
-	
+	SignalBus.serve_pressed.connect(_on_serve_pressed)
+	SignalBus.time_ran_out.connect(_on_time_ran_out)
 
-	#await get_tree().process_frame
-	#order_begin_phase()
+
+	# dev fill draw pile with dummy deck
+	await get_tree().process_frame
+	var card_scene = preload("res://source/scenes/card.tscn")
+	for x in range(0,20):
+		var card = card_scene.instantiate()
+		card.setup_from_card_num(randi_range(1,4))
+		draw_pile.add_card(card)
+
+	await get_tree().create_timer(0.5).timeout
+	day_setup_phase()
 
 func _process(delta: float) -> void:
-	pass
 	if Input.is_action_just_pressed("debug_0"):
 		fill_hand()
 
@@ -86,6 +101,28 @@ func fill_hand() -> void:
 	for x in range(0,diff):
 		draw_card_to_hand()
 
+
+func day_setup_phase() -> void:
+	day_state = DayState.SETUP
+	game_timer.setup(30)
+	fill_hand()
+
+func day_order_phase() -> void:
+	day_state = DayState.ORDER
+	game_timer.start()
+	order_machine.order_begin_phase() # a little direct
+
+func day_pass_phase() -> void:
+	# stop player input
+	# remove customer and dish WIP
+	# allow 
+	print("day successful!")
+
+func day_fail_phase() -> void:
+	# Take order away, hide customer
+	# Reset to start of day
+	print("day failed!")
+
 func _on_discard(card: Card) -> void:
 	hand.take_card(card)
 	discard_pile.place_card(card)
@@ -108,3 +145,13 @@ func _on_pile_empty(pile: Pile) -> void:
 		if pack.size() > 0:
 			draw_pile.add_cards(pack)
 			draw_pile.shuffle()
+
+func _on_serve_pressed() -> void:
+	# redirect the signal to one of the two state machines, as need be
+	if day_state == DayState.SETUP:
+		day_order_phase()
+	elif day_state == DayState.ORDER:
+		order_machine._on_serve_pressed()
+
+func _on_time_ran_out() -> void:
+	day_fail_phase()

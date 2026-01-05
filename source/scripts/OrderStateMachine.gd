@@ -24,7 +24,7 @@ enum OrderState {
 var order_state: OrderState = OrderState.WAIT
 
 func _ready() -> void:
-	SignalBus.serve_pressed.connect(_on_serve_pressed)
+	GameManager.order_machine = self
 
 func order_begin_phase() -> void:
 	# All the work done before a player can select cards
@@ -61,6 +61,8 @@ func order_serve_phase() -> void:
 
 	# Take order away
 
+	# Hide customer
+
 	# Collect feedback
 	var score: int = GameManager.eval_score()
 	# and do what with the score
@@ -75,10 +77,8 @@ func order_serve_phase() -> void:
 	order_begin_phase()
 
 func _on_serve_pressed() -> void:
-	# If WAITing, start first order
-	# If SELECTing, serve order
+	# Instead of directly looking at the button, waits for 
+	# a redirect from manager, to prevent changing states multiple times in a frame
 
-	if order_state == OrderState.WAIT:
-		order_begin_phase()
-	elif order_state == OrderState.SELECT:
+	if order_state == OrderState.SELECT:
 		order_serve_phase()

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bo2bw31wdobah"]
+
+[ext_resource type="Script" uid="uid://s5qduki76ktw" path="res://source/gui/game_timer.gd" id="1_jwwi3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jwwi3"]
+font_size = 22
+
+[node name="GameTimer" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_jwwi3")
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(65, 0)
+layout_mode = 0
+offset_right = 65.0
+offset_bottom = 31.0
+text = "0:00"
+label_settings = SubResource("LabelSettings_jwwi3")
+horizontal_alignment = 2

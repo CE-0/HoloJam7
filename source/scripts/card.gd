@@ -77,6 +77,7 @@ func focus_on() -> void:
 	self.scale = Vector2(1.5, 1.5) # todo: const all these
 	self.position = self.position + Vector2(0,-50)
 
+	# TODO: tapping multiple cards at once can cause this to fail
 	(self.get_parent() as Hand).set_hand_focus(self)
 	current_state = State.FOCUS
 
