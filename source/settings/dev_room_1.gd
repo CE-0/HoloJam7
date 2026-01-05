@@ -11,6 +11,7 @@ func _ready() -> void:
 	GameManager.draw_pile = $DrawPile
 	GameManager.discard_pile = $DiscardPile
 	GameManager.hand = $Hand
+	GameManager.order_gen = $OrderGenerator
 
 func _process(_delta: float) -> void:
 	pass

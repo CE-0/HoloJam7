@@ -1,0 +1,42 @@
+{
+	"0": {
+		"image": "res://icon.svg",
+		"name": "Sweet recipe",
+		"taste_reqs": {
+			"sweet": 1,
+			"salty": 0,
+			"sour": 0,
+			"umami": 0
+		}
+	},
+	"1": {
+		"image": "res://icon.svg",
+		"name": "Salty food",
+		"taste_reqs": {
+			"sweet": 1,
+			"salty": 1,
+			"sour": 0,
+			"umami": 0
+		}
+	},
+	"2": {
+		"image": "res://icon.svg",
+		"name": "Sour meal",
+		"taste_reqs": {
+			"sweet": 0,
+			"salty": 1,
+			"sour": 2,
+			"umami": 0
+		}
+	},
+	"3": {
+		"image": "res://icon.svg",
+		"name": "Umami plate",
+		"taste_reqs": {
+			"sweet": 0,
+			"salty": 1,
+			"sour": 1,
+			"umami": 1
+		}
+	}
+}

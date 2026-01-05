@@ -25,6 +25,7 @@ var hand: Hand
 var HUD: DevHUD
 var order_machine: OrderStateMachine
 var game_timer: GameTimer
+var order_gen: OrderGenerator
 
 var current_order: Order
 

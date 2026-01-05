@@ -30,13 +30,8 @@ func order_begin_phase() -> void:
 	# All the work done before a player can select cards
 	order_state = OrderState.BEGIN
 
-	# random orders for testing
-	var dev_order: Order = load("res://source/scenes/order.tscn").instantiate()
-	var random_reqs: Array[int] = [0,1,2,0]
-	random_reqs.shuffle()
-	dev_order.setup_reqs(random_reqs)
-
-	GameManager.current_order = dev_order
+	# GameManager.order_gen.set_difficulty(a)
+	GameManager.current_order = GameManager.order_gen.get_single_order()
 
 	# Tell customer window what customer to display
 	# customer_window.show_customer(daily_orders.customer_name)
@@ -45,8 +40,8 @@ func order_begin_phase() -> void:
 	GameManager.HUD.update_order_reqs(GameManager.current_order.taste_reqs)
 	GameManager.HUD.update_dish_stats(GameManager.dish_taste)
 
-	# Fill hand with cards
-	# fill_hand()
+	# Fill hand with cards (backup)
+	GameManager.fill_hand()
 
 	# continue automatically
 	order_select_phase()
