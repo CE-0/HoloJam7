@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bksmk5evfkfln"]
+[gd_scene load_steps=13 format=3 uid="uid://bksmk5evfkfln"]
 
 [ext_resource type="PackedScene" uid="uid://b2ii1dwbjera2" path="res://source/gui/menus/pause_menu.tscn" id="1_i7gob"]
 [ext_resource type="Script" uid="uid://densox0ndrugk" path="res://source/settings/dev_room_1.gd" id="1_l6tno"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://n22j3cv3w83g" path="res://source/scripts/order_generator.gd" id="7_dv8nw"]
 [ext_resource type="Texture2D" uid="uid://d0bk1sq0hnac5" path="res://assets/ui/UI_BG.png" id="9_gu6sm"]
 [ext_resource type="Texture2D" uid="uid://bjhjuhahf0lpi" path="res://assets/ui/UI_Bottom.png" id="10_3yupx"]
+[ext_resource type="Texture2D" uid="uid://evrdbfaus6cy" path="res://assets/Mock_2.png" id="11_3yupx"]
+[ext_resource type="PackedScene" uid="uid://dm76iwe5uaqsx" path="res://source/scenes/customer.tscn" id="12_tsjc1"]
 
 [node name="DevRoom1" type="Node"]
 script = ExtResource("1_l6tno")
@@ -46,6 +48,14 @@ script = ExtResource("7_dv8nw")
 texture = ExtResource("9_gu6sm")
 centered = false
 
+[node name="Customer" parent="." instance=ExtResource("12_tsjc1")]
+position = Vector2(1454, 419)
+
 [node name="UiBottom" type="Sprite2D" parent="."]
 texture = ExtResource("10_3yupx")
+centered = false
+
+[node name="Mock2" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("11_3yupx")
 centered = false

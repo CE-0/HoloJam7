@@ -27,6 +27,7 @@ var debugHUD: DevHUD
 var order_machine: OrderStateMachine
 var game_timer: GameTimer
 var order_gen: OrderGenerator
+var customer: Customer
 
 var current_order: Order
 

@@ -35,6 +35,7 @@ func order_begin_phase() -> void:
 
 	# Tell customer window what customer to display
 	# customer_window.show_customer(daily_orders.customer_name)
+	GameManager.customer.move_onscreen()
 
 	# Tell order window what order to display
 	GameManager.HUD.update_order_reqs(GameManager.current_order.taste_reqs)
@@ -57,6 +58,8 @@ func order_serve_phase() -> void:
 	# Take order away
 
 	# Hide customer
+	GameManager.customer.move_offscreen()
+	await SignalBus.customer_done_moving
 
 	# Collect feedback
 	var score: int = GameManager.eval_score()

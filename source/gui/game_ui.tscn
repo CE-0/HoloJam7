@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://blma87368m17f"]
+[gd_scene load_steps=12 format=3 uid="uid://blma87368m17f"]
 
 [ext_resource type="Script" uid="uid://1grwospwaa7k" path="res://source/gui/game_ui.gd" id="1_0cyqu"]
 [ext_resource type="Texture2D" uid="uid://dwrbg425et6eg" path="res://assets/ui/UI_Sidebar.png" id="3_1j0tq"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://01vntb6c34hm" path="res://assets/ui/UI_Serving.png" id="6_v2kgr"]
 [ext_resource type="FontFile" uid="uid://bb7mjr65gyr7i" path="res://assets/fonts/04B_30__.TTF" id="7_v2kgr"]
 [ext_resource type="FontFile" uid="uid://b00a6crxmm10e" path="res://assets/fonts/Pix32.ttf" id="8_72gkx"]
-[ext_resource type="Texture2D" uid="uid://evrdbfaus6cy" path="res://assets/Mock_2.png" id="8_cnw61"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cnw61"]
 font = ExtResource("7_v2kgr")
@@ -215,9 +214,3 @@ offset_bottom = 938.0
 text = "x umami"
 label_settings = SubResource("LabelSettings_jcs87")
 vertical_alignment = 1
-
-[node name="Mock2" type="Sprite2D" parent="."]
-visible = false
-modulate = Color(1, 1, 1, 0.40392157)
-texture = ExtResource("8_cnw61")
-centered = false
