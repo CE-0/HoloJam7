@@ -1,0 +1,223 @@
+[gd_scene load_steps=13 format=3 uid="uid://blma87368m17f"]
+
+[ext_resource type="Script" uid="uid://1grwospwaa7k" path="res://source/gui/game_ui.gd" id="1_0cyqu"]
+[ext_resource type="Texture2D" uid="uid://dwrbg425et6eg" path="res://assets/ui/UI_Sidebar.png" id="3_1j0tq"]
+[ext_resource type="Texture2D" uid="uid://ckeyq1q5u2xq3" path="res://assets/ui/UI_Clock.png" id="4_oa8dt"]
+[ext_resource type="Texture2D" uid="uid://bnxttlcplbqs5" path="res://assets/ui/UI_Order.png" id="5_8mydn"]
+[ext_resource type="Script" uid="uid://s5qduki76ktw" path="res://source/gui/game_timer.gd" id="5_jcs87"]
+[ext_resource type="Texture2D" uid="uid://01vntb6c34hm" path="res://assets/ui/UI_Serving.png" id="6_v2kgr"]
+[ext_resource type="FontFile" uid="uid://bb7mjr65gyr7i" path="res://assets/fonts/04B_30__.TTF" id="7_v2kgr"]
+[ext_resource type="FontFile" uid="uid://b00a6crxmm10e" path="res://assets/fonts/Pix32.ttf" id="8_72gkx"]
+[ext_resource type="Texture2D" uid="uid://evrdbfaus6cy" path="res://assets/Mock_2.png" id="8_cnw61"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cnw61"]
+font = ExtResource("7_v2kgr")
+font_size = 58
+outline_size = 13
+outline_color = Color(0.8627451, 0.4392157, 0.27058825, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_72gkx"]
+line_spacing = 26.75
+font = ExtResource("7_v2kgr")
+font_size = 44
+outline_size = 14
+outline_color = Color(0.8627451, 0.4392157, 0.27058825, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jcs87"]
+line_spacing = -0.025
+font = ExtResource("8_72gkx")
+font_size = 37
+outline_size = 12
+outline_color = Color(0.8627451, 0.4392157, 0.27058825, 1)
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0cyqu")
+
+[node name="Sidebar" type="TextureRect" parent="."]
+layout_mode = 0
+texture = ExtResource("3_1j0tq")
+
+[node name="FrameServing" type="TextureRect" parent="."]
+layout_mode = 0
+texture = ExtResource("6_v2kgr")
+
+[node name="Clock" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_jcs87")
+
+[node name="FrameClock" type="TextureRect" parent="Clock"]
+layout_mode = 0
+texture = ExtResource("4_oa8dt")
+
+[node name="Label" type="Label" parent="Clock"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 66.0
+offset_right = 386.0
+offset_bottom = 149.0
+text = "CLOCK"
+label_settings = SubResource("LabelSettings_cnw61")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Order" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FrameOrder" type="TextureRect" parent="Order"]
+layout_mode = 0
+texture = ExtResource("5_8mydn")
+
+[node name="OrderHeader" type="Label" parent="Order/FrameOrder"]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 232.0
+offset_right = 382.0
+offset_bottom = 318.0
+text = "Order #X"
+label_settings = SubResource("LabelSettings_72gkx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Order/FrameOrder"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 281.0
+offset_right = 367.0
+offset_bottom = 345.0
+text = "1x Pizza"
+label_settings = SubResource("LabelSettings_jcs87")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RequestHeader" type="Label" parent="Order/FrameOrder"]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 339.0
+offset_right = 382.0
+offset_bottom = 496.0
+text = "Special
+Requests"
+label_settings = SubResource("LabelSettings_72gkx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReqA" type="Label" parent="Order/FrameOrder"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 81.0
+offset_top = 490.0
+offset_right = 217.0
+offset_bottom = 553.0
+text = "x sweet"
+label_settings = SubResource("LabelSettings_jcs87")
+vertical_alignment = 1
+
+[node name="ReqB" type="Label" parent="Order/FrameOrder"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 81.0
+offset_top = 525.0
+offset_right = 210.0
+offset_bottom = 588.0
+text = "x salty"
+label_settings = SubResource("LabelSettings_jcs87")
+vertical_alignment = 1
+
+[node name="ReqC" type="Label" parent="Order/FrameOrder"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 230.0
+offset_top = 490.0
+offset_right = 437.0
+offset_bottom = 553.0
+text = "x sour"
+label_settings = SubResource("LabelSettings_jcs87")
+vertical_alignment = 1
+
+[node name="ReqD" type="Label" parent="Order/FrameOrder"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 230.0
+offset_top = 525.0
+offset_right = 437.0
+offset_bottom = 588.0
+text = "x umami"
+label_settings = SubResource("LabelSettings_jcs87")
+vertical_alignment = 1
+
+[node name="Serving" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ServingHeader" type="Label" parent="Serving"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 705.0
+offset_right = 380.0
+offset_bottom = 832.0
+text = "Serving
+Now:"
+label_settings = SubResource("LabelSettings_72gkx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DishA" type="Label" parent="Serving"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 81.0
+offset_top = 840.0
+offset_right = 217.0
+offset_bottom = 903.0
+text = "x sweet"
+label_settings = SubResource("LabelSettings_jcs87")
+vertical_alignment = 1
+
+[node name="DishB" type="Label" parent="Serving"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 81.0
+offset_top = 875.0
+offset_right = 210.0
+offset_bottom = 938.0
+text = "x salty"
+label_settings = SubResource("LabelSettings_jcs87")
+vertical_alignment = 1
+
+[node name="DishC" type="Label" parent="Serving"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 230.0
+offset_top = 840.0
+offset_right = 437.0
+offset_bottom = 903.0
+text = "x sour"
+label_settings = SubResource("LabelSettings_jcs87")
+vertical_alignment = 1
+
+[node name="DishD" type="Label" parent="Serving"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 230.0
+offset_top = 875.0
+offset_right = 437.0
+offset_bottom = 938.0
+text = "x umami"
+label_settings = SubResource("LabelSettings_jcs87")
+vertical_alignment = 1
+
+[node name="Mock2" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.40392157)
+texture = ExtResource("8_cnw61")
+centered = false

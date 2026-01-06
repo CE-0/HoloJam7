@@ -1,31 +1,39 @@
-[gd_scene load_steps=8 format=3 uid="uid://bksmk5evfkfln"]
+[gd_scene load_steps=11 format=3 uid="uid://bksmk5evfkfln"]
 
 [ext_resource type="PackedScene" uid="uid://b2ii1dwbjera2" path="res://source/gui/menus/pause_menu.tscn" id="1_i7gob"]
 [ext_resource type="Script" uid="uid://densox0ndrugk" path="res://source/settings/dev_room_1.gd" id="1_l6tno"]
 [ext_resource type="PackedScene" uid="uid://d2h77cacxh2qp" path="res://source/scenes/hand.tscn" id="2_5olku"]
+[ext_resource type="PackedScene" uid="uid://blma87368m17f" path="res://source/gui/game_ui.tscn" id="2_ic80d"]
 [ext_resource type="PackedScene" uid="uid://cstfh15tab36h" path="res://source/gui/dev_hud.tscn" id="3_yeh31"]
 [ext_resource type="PackedScene" uid="uid://cjbwls52odjlx" path="res://source/scenes/pile.tscn" id="4_l6tno"]
 [ext_resource type="Script" uid="uid://b0kwtgnhhbws6" path="res://source/scripts/OrderStateMachine.gd" id="6_qu3nr"]
 [ext_resource type="Script" uid="uid://n22j3cv3w83g" path="res://source/scripts/order_generator.gd" id="7_dv8nw"]
+[ext_resource type="Texture2D" uid="uid://d0bk1sq0hnac5" path="res://assets/ui/UI_BG.png" id="9_gu6sm"]
+[ext_resource type="Texture2D" uid="uid://bjhjuhahf0lpi" path="res://assets/ui/UI_Bottom.png" id="10_3yupx"]
 
 [node name="DevRoom1" type="Node"]
 script = ExtResource("1_l6tno")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Hud" parent="CanvasLayer" instance=ExtResource("3_yeh31")]
+[node name="GameUI" parent="CanvasLayer" instance=ExtResource("2_ic80d")]
+
+[node name="DevHud" parent="CanvasLayer" instance=ExtResource("3_yeh31")]
 mouse_filter = 1
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("1_i7gob")]
 visible = false
 
 [node name="Hand" parent="." instance=ExtResource("2_5olku")]
-position = Vector2(960, 862)
+z_index = 5
+position = Vector2(1158, 862)
 
 [node name="DrawPile" parent="." instance=ExtResource("4_l6tno")]
-position = Vector2(93, 957)
+z_index = 5
+position = Vector2(562, 957)
 
 [node name="DiscardPile" parent="." instance=ExtResource("4_l6tno")]
+z_index = 5
 position = Vector2(1789, 957)
 
 [node name="OrderStateMachine" type="Node" parent="."]
@@ -33,3 +41,11 @@ script = ExtResource("6_qu3nr")
 
 [node name="OrderGenerator" type="Node" parent="."]
 script = ExtResource("7_dv8nw")
+
+[node name="UiBg" type="Sprite2D" parent="."]
+texture = ExtResource("9_gu6sm")
+centered = false
+
+[node name="UiBottom" type="Sprite2D" parent="."]
+texture = ExtResource("10_3yupx")
+centered = false

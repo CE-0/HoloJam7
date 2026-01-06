@@ -22,7 +22,8 @@ var day_state: DayState = DayState.SETUP
 var draw_pile: Pile
 var discard_pile: Pile
 var hand: Hand
-var HUD: DevHUD
+var HUD: GameUI
+var debugHUD: DevHUD
 var order_machine: OrderStateMachine
 var game_timer: GameTimer
 var order_gen: OrderGenerator
@@ -44,7 +45,6 @@ func _ready() -> void:
 	SignalBus.pile_empty.connect(_on_pile_empty)
 	SignalBus.serve_pressed.connect(_on_serve_pressed)
 	SignalBus.time_ran_out.connect(_on_time_ran_out)
-
 
 	# dev fill draw pile with dummy deck
 	await get_tree().process_frame

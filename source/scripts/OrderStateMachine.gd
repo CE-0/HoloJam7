@@ -61,7 +61,7 @@ func order_serve_phase() -> void:
 	# Collect feedback
 	var score: int = GameManager.eval_score()
 	# and do what with the score
-	GameManager.HUD.update_feedback_label(str("dish score: ", score))
+	GameManager.debugHUD.update_feedback_label(str("dish score: ", score))
 	GameManager.dish_taste_reset()
 
 	# Fill hand with cards
