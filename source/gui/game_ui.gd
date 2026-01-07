@@ -60,6 +60,6 @@ func update_dish_stats(taste_state: Dictionary) -> void:
 func set_total_orders(value: int) -> void:
 	total_orders = value
 
-func update_current_order(value: int) -> void:
+func update_current_order_num(value: int) -> void:
 	# todo: resize or something for double digit orders
 	order_nums.text = "%d/%d" % [value, total_orders]
