@@ -76,8 +76,10 @@ func focus_on() -> void:
 		self.transform = neutral_transform
 
 	# 1 frame transform
-	self.scale = Vector2(1.5, 1.5) # todo: const all these
-	self.position = self.position + Vector2(0,-50)
+	self.scale = Vector2(2.0, 2.0) # todo: const all these
+	# self.position = self.position + Vector2(0,-135) # -50
+	self.global_position = Vector2(self.global_position.x, 876)
+	self.rotation = 0.0
 	self.z_index = 99
 
 	# Error happens when parent is already discard but still trying to focus
@@ -106,6 +108,7 @@ func set_neutral_transform(transform_n: Transform2D, zidx: int) -> void:
 		return
 
 	self.neutral_transform = transform_n
+	self.neutral_transform = Transform2D(transform_n.get_rotation(), Vector2(1.5,1.5), 0, transform_n.get_origin())
 	self.neutral_z_idx = zidx
 
 	tween_t = get_tree().create_tween()

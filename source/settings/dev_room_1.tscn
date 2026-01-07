@@ -37,7 +37,7 @@ visible = false
 
 [node name="Hand" parent="." instance=ExtResource("2_5olku")]
 z_index = 5
-position = Vector2(1158, 862)
+position = Vector2(1158, 978)
 
 [node name="DrawPile" parent="." instance=ExtResource("4_l6tno")]
 z_index = 5
@@ -81,6 +81,7 @@ centered = false
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = 2
+visible = false
 
 [node name="CursorNone" type="Sprite2D" parent="CanvasLayer2"]
 modulate = Color(0.6862745, 0.42352942, 0.29803923, 1)

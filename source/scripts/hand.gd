@@ -4,7 +4,7 @@ extends Node2D
 # Selection of cards available for use by the player
 # Arranges the cards for easy viewing and selection by player
 
-const HAND_WIDTH: float = 1200
+const HAND_WIDTH: float = 750
 
 var held_cards: Array[Card] = []
 var focused_card: Card = null
@@ -68,11 +68,12 @@ func arrange_cards() -> void:
 	var num: int = held_cards.size()
 	if num == 0:
 		return
-
 	for i in range(0, num):
 		# set card transform in hand
 		# this function can be made into a more human curve later
 		var card_x: float = (i+1)*HAND_WIDTH/(num+1) - HAND_WIDTH/2
+		var card_y: float = (card_x/40.0)*(card_x/40.0)
+		var rot: float = ((i+1)*1.0/(num+1)-0.5)*PI/4
 
 		# save and apply transform, z index
-		held_cards[i].set_neutral_transform(Transform2D(0, Vector2(card_x,0)), 50 + i)
+		held_cards[i].set_neutral_transform(Transform2D(rot, Vector2(card_x,card_y)), 50 + i)

@@ -5,7 +5,7 @@ extends Node
 
 # Careful of scopes of stuff pulled out into state machines
 
-const MAX_CARDS_PER_HAND: int = 10
+const MAX_CARDS_PER_HAND: int = 5
 const REROLL_COST: int = 1
 
 # These are filled externally
