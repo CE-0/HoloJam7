@@ -17,7 +17,6 @@ enum State {
 	FOCUS,	# Looking closer at the card in the hand
 	TAPPED
 }
-
 var current_state: int = State.HELD
 
 var tween_t: Tween # tween dedicated to transform
@@ -79,10 +78,14 @@ func focus_on() -> void:
 	# 1 frame transform
 	self.scale = Vector2(1.5, 1.5) # todo: const all these
 	self.position = self.position + Vector2(0,-50)
+	self.z_index = 99
 
-	# TODO: tapping multiple cards at once can cause this to fail
-	(self.get_parent() as Hand).set_hand_focus(self)
-	current_state = State.FOCUS
+	# Error happens when parent is already discard but still trying to focus
+	# (self.get_parent() as Hand).set_hand_focus(self)
+	var parent = self.get_parent()
+	if parent is Hand:
+		parent.set_hand_focus(self)
+		current_state = State.FOCUS
 
 func unfocus() -> void:
 	# return card to neutral state in hand
@@ -99,6 +102,9 @@ func set_neutral_transform(transform_n: Transform2D, zidx: int) -> void:
 	# set the base transform for the card when it is held in hand
 	# focusing on a card will deviate from this neutral state,
 	# then losing focus will ease back to this base
+	if current_state == State.TAPPED:
+		return
+
 	self.neutral_transform = transform_n
 	self.neutral_z_idx = zidx
 
@@ -113,10 +119,13 @@ func tap() -> void:
 	# Play animations and update states
 	if current_state != State.FOCUS:
 		return
+	if not GameManager.can_play_card():
+		return
 	current_state = State.TAPPED
 
 	# Flourish / appply to recipe animation
 	# TODO: real animation / feedback
+	AudioManager.play_random_tap_sound()
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(self, "position", self.position + Vector2(0,-400), 0.1)
 	await tween.finished
@@ -126,10 +135,12 @@ func tap() -> void:
 	SignalBus.card_tapped.emit(self)
 
 func _on_mouse_entered() -> void:
-	self.focus_on()
+	if current_state == State.HELD:
+		self.focus_on()
 
 func _on_mouse_exited() -> void:
-	self.unfocus()
+	if current_state == State.FOCUS:
+		self.unfocus()
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	pass
@@ -139,6 +150,8 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 			self.tap()
 		if Input.is_action_just_pressed("reroll_card"):
 			#print("Discarding card!")
+			if not GameManager.can_play_card():
+				return
 			current_state = State.PILE
 			# SignalBus.discard.emit(self)
 			SignalBus.reroll.emit(self)

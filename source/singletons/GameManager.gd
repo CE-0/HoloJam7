@@ -1,22 +1,12 @@
 extends Node
 
-# Big boy tracker of everything that takes place in a day
+# Big boy tracker of everything that takes place in a game
 # Primary job is to interface between objects that otherwise don't know about each other
 
-# Order state machine could be elsewhere, depending
-# Mostly just don't know if that messes up the visible scope of objects
+# Careful of scopes of stuff pulled out into state machines
 
-const MAX_CARDS_PER_HAND: int = 5
+const MAX_CARDS_PER_HAND: int = 10
 const REROLL_COST: int = 1
-
-# State machine for day loop
-enum DayState {
-	SETUP, # Start of day phase, player can look at and manage deck
-	ORDER, # Order loop is executing
-	FAIL, # Reset current day
-	PASS # After orders update deck and get ready for new day
-}
-var day_state: DayState = DayState.SETUP
 
 # These are filled externally
 var draw_pile: Pile
@@ -25,12 +15,10 @@ var hand: Hand
 var HUD: GameUI
 var debugHUD: DevHUD
 var order_machine: OrderStateMachine
+var day_machine: DayStateMachine
 var game_timer: GameTimer
 var order_gen: OrderGenerator
 var customer: Customer
-
-var current_order: Order
-var total_orders: int
 
 var dish_taste = {
 	"sweet": 0,
@@ -38,7 +26,8 @@ var dish_taste = {
 	"sour": 0,
 	"umami": 0
 }
-
+var current_order: Order
+var total_orders: int
 
 func _ready() -> void:
 	SignalBus.discard.connect(_on_discard)
@@ -46,22 +35,35 @@ func _ready() -> void:
 	SignalBus.card_tapped.connect(_on_card_tapped)
 	SignalBus.pile_empty.connect(_on_pile_empty)
 	SignalBus.serve_pressed.connect(_on_serve_pressed)
-	SignalBus.time_ran_out.connect(_on_time_ran_out)
 
-	# dev fill draw pile with dummy deck
+	# dev: fill draw pile with dummy deck
 	await get_tree().process_frame
+	if draw_pile == null:
+		return
 	var card_scene = preload("res://source/scenes/card.tscn")
 	for x in range(0,20):
 		var card = card_scene.instantiate()
+		add_child(card)
 		card.setup_from_card_num(randi_range(1,4))
 		draw_pile.add_card(card)
 
-	await get_tree().create_timer(0.5).timeout
-	day_setup_phase()
+	await get_tree().create_timer(0.5).timeout # ?
+	day_machine.day_setup_phase()
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("debug_0"):
 		fill_hand()
+
+func set_total_order_num(value: int) -> void:
+	total_orders = value
+	GameManager.HUD.set_total_orders(total_orders)
+
+func get_new_order(order_num: int) -> void:
+	current_order = order_gen.get_single_order()
+	HUD.update_order_reqs(current_order.taste_reqs)
+	HUD.set_order_name(current_order.recipe_name)
+	HUD.update_dish_stats(dish_taste)
+	HUD.update_current_order_num(order_num)
 
 func add_values_to_dish(tastes: Dictionary) -> void:
 	dish_taste["sweet"] = dish_taste["sweet"] + tastes["sweet"]
@@ -85,17 +87,21 @@ func eval_score() -> int:
 	return -score
 
 func dish_taste_reset() -> void:
+	# Resets BOTH the order and now serving tastes to 0s
 	dish_taste["sweet"] = 0
 	dish_taste["salty"] = 0
 	dish_taste["sour"] = 0
 	dish_taste["umami"] = 0
 	HUD.update_dish_stats(dish_taste)
+	HUD.update_order_reqs(dish_taste)
 
 func draw_card_to_hand() -> void:
 	# Move a single card from the draw pile to the hand
-	var card: Card = draw_pile.draw_card()
+	var card: Card = draw_pile.draw_from()
 	if card != null:
 		hand.add_card(card)
+		await get_tree().create_timer(0.15).timeout
+		AudioManager.play("CardSelectB")
 
 func fill_hand() -> void:
 	# Check if players hand is full and if not draw cards from pile to add to it
@@ -105,38 +111,22 @@ func fill_hand() -> void:
 	for x in range(0,diff):
 		draw_card_to_hand()
 
-
-func day_setup_phase() -> void:
-	day_state = DayState.SETUP
-	# determine number of orders for the day
-	total_orders = 6
-	order_machine.set_total_orders(total_orders)
-	HUD.set_total_orders(total_orders)
-	game_timer.setup(30)
-	fill_hand()
-
-func day_order_phase() -> void:
-	day_state = DayState.ORDER
-	game_timer.start()
-	order_machine.order_begin_phase() # a little direct
-
-func day_pass_phase() -> void:
-	# stop player input
-	# remove customer and dish WIP
-	# allow 
-	print("day successful!")
-
-func day_fail_phase() -> void:
-	# Take order away, hide customer
-	# Reset to start of day
-	print("day failed!")
+func can_play_card() -> bool:
+	# Called by cards to verify if playing is allowed
+	# So far only restriction is must be during Order.Select phase
+	# But leaving space for more
+	if order_machine.current_state != order_machine.OrderState.SELECT:
+		return false
+	return true
 
 
 func _on_discard(card: Card) -> void:
 	hand.take_card(card)
 	discard_pile.place_card(card)
+	AudioManager.play("CardDiscard")
 
 func _on_reroll(card: Card) -> void:
+	AudioManager.play("CardDiscard")
 	hand.take_card(card)
 	discard_pile.place_card(card)
 	SignalBus.time_penalty.emit(REROLL_COST)
@@ -152,17 +142,24 @@ func _on_card_tapped(card: Card) -> void:
 func _on_pile_empty(pile: Pile) -> void:
 	# If there's very few cards so both packs are empty, it can cause some soft locks
 	if pile == draw_pile:
+		# If nothing in discard, can't do any work
+		# also thats an error state
+		if discard_pile.size() == 0:
+			push_warning("Draw and discard piles both ran out")
+			return
 		var pack = discard_pile.remove_all_cards()
-		if pack.size() > 0:
-			draw_pile.add_cards(pack)
-			draw_pile.shuffle()
+		draw_pile.add_cards(pack)
+		draw_pile.shuffle()
+
+		# Audio stuff
+		await get_tree().create_timer(0.15).timeout
+		AudioManager.play("CardShuffle")
+		await get_tree().create_timer(0.67).timeout
+		AudioManager.stop("CardShuffle")
 
 func _on_serve_pressed() -> void:
 	# redirect the signal to one of the two state machines, as need be
-	if day_state == DayState.SETUP:
-		day_order_phase()
-	elif day_state == DayState.ORDER:
+	if day_machine.current_state == day_machine.DayState.SETUP:
+		day_machine._on_serve_pressed()
+	elif day_machine.current_state == day_machine.DayState.ORDER:
 		order_machine._on_serve_pressed()
-
-func _on_time_ran_out() -> void:
-	day_fail_phase()

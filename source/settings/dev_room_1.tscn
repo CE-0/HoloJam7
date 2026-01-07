@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bksmk5evfkfln"]
+[gd_scene load_steps=17 format=3 uid="uid://bksmk5evfkfln"]
 
 [ext_resource type="PackedScene" uid="uid://b2ii1dwbjera2" path="res://source/gui/menus/pause_menu.tscn" id="1_i7gob"]
 [ext_resource type="Script" uid="uid://densox0ndrugk" path="res://source/settings/dev_room_1.gd" id="1_l6tno"]
@@ -8,11 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://cjbwls52odjlx" path="res://source/scenes/pile.tscn" id="4_l6tno"]
 [ext_resource type="Script" uid="uid://b0kwtgnhhbws6" path="res://source/scripts/OrderStateMachine.gd" id="6_qu3nr"]
 [ext_resource type="Script" uid="uid://n22j3cv3w83g" path="res://source/scripts/order_generator.gd" id="7_dv8nw"]
+[ext_resource type="Script" uid="uid://cxmkb0ao3skbl" path="res://source/scripts/DayStateMachine.gd" id="8_gt04f"]
 [ext_resource type="Texture2D" uid="uid://d0bk1sq0hnac5" path="res://assets/ui/UI_BG.png" id="9_gu6sm"]
 [ext_resource type="Texture2D" uid="uid://bjhjuhahf0lpi" path="res://assets/ui/UI_Bottom.png" id="10_3yupx"]
 [ext_resource type="Texture2D" uid="uid://b41bwcwuvkflo" path="res://assets/characters/Haachama.png" id="11_2em5d"]
 [ext_resource type="Texture2D" uid="uid://evrdbfaus6cy" path="res://assets/Mock_2.png" id="11_3yupx"]
 [ext_resource type="PackedScene" uid="uid://dm76iwe5uaqsx" path="res://source/scenes/customer.tscn" id="12_tsjc1"]
+[ext_resource type="Texture2D" uid="uid://dxaob4yd5llv2" path="res://assets/cursor_none.png" id="14_mwrjf"]
+[ext_resource type="Script" uid="uid://io071xrea3bq" path="res://source/scripts/mouse_pointer.gd" id="15_0wurm"]
 
 [node name="DevRoom1" type="Node"]
 script = ExtResource("1_l6tno")
@@ -42,6 +45,9 @@ position = Vector2(1789, 957)
 [node name="OrderStateMachine" type="Node" parent="."]
 script = ExtResource("6_qu3nr")
 
+[node name="DayStateMachine" type="Node" parent="."]
+script = ExtResource("8_gt04f")
+
 [node name="OrderGenerator" type="Node" parent="."]
 script = ExtResource("7_dv8nw")
 
@@ -65,3 +71,14 @@ centered = false
 visible = false
 texture = ExtResource("11_3yupx")
 centered = false
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="CursorNone" type="Sprite2D" parent="CanvasLayer2"]
+modulate = Color(0.6862745, 0.42352942, 0.29803923, 1)
+top_level = true
+z_index = 4096
+texture = ExtResource("14_mwrjf")
+centered = false
+script = ExtResource("15_0wurm")

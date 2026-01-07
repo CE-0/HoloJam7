@@ -40,13 +40,7 @@ func get_single_order() -> Order:
 	var menu_item: Dictionary = raw_data[str(r)]
 	# print(menu_item)
 	var last: Order = order_scene.instantiate()
-	var reqs: Array[int] = [
-		menu_item["taste_reqs"]["sweet"],
-		menu_item["taste_reqs"]["salty"],
-		menu_item["taste_reqs"]["sour"],
-		menu_item["taste_reqs"]["umami"]
-	]
-	last.setup_reqs(reqs)
+	last.setup_from_data(menu_item)
 	scale_taste_to_difficulty(last)
 	return last
 

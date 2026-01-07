@@ -13,6 +13,9 @@ func _ready() -> void:
 	pass
 	update_count()
 
+func size() -> int:
+	return cards.size()
+
 func add_card(card: Card) -> void:
 	# This method is for adding cards to the pile under the hood,
 	# During initial setup or reshuffling
@@ -22,6 +25,7 @@ func add_card(card: Card) -> void:
 
 func add_cards(pile: Array[Card]) -> void:
 	for card in pile:
+		card.reparent(self)
 		cards.push_back(card)
 	update_count()
 
@@ -44,9 +48,10 @@ func place_card(card: Card) -> void:
 	card.hide()
 
 	cards.push_back(card)
+	card.current_state = card.State.PILE # replace
 	update_count()
 
-func draw_card() -> Card:
+func draw_from() -> Card:
 	if cards.size() <= 0:
 		push_warning("Tried to draw a card from empty pile ", self.name)
 		return null
