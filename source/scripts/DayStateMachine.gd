@@ -20,7 +20,7 @@ enum DayState {
 }
 var current_state: DayState = DayState.SETUP
 
-var time_in_day: int = 300
+var time_in_day: int = 60
 var total_orders: int # theres redundant copies of this var, one in each machine
 var current_day: int = 1
 
@@ -32,19 +32,27 @@ func _ready() -> void:
 func day_setup_phase() -> void:
 	current_state = DayState.SETUP
 
-	# determine number of orders for the day
-	total_orders = 6
+	GameManager.HUD.set_current_day(current_day)
+	GameManager.reset_dish_hud()
+	GameManager.order_machine.reset()
+
+	# New days can mean new values for a handful of variables
+	# How many orders in the day? Average difficulty of orders? How long to finish the day?
+
+	total_orders = 3
 	GameManager.set_total_order_num(total_orders)
 	GameManager.HUD.update_current_order_num(0)
 
-	# GameManager.order_gen.set_difficulty(a)
+	GameManager.order_gen.set_difficulty(current_day)
 
-	GameManager.HUD.set_current_day(current_day)
 	GameManager.game_timer.setup(time_in_day)
-	GameManager.reset_dish_hud()
-	GameManager.fill_hand()
 
+	# Visual setup
+	GameManager.HUD.fade_in(1.0)
+	await get_tree().create_timer(0.25).timeout
 	GameManager.cook.move_onscreen()
+	await get_tree().create_timer(1.0).timeout
+	GameManager.fill_hand()
 
 func day_order_phase() -> void:
 	current_state = DayState.ORDER
@@ -54,12 +62,21 @@ func day_order_phase() -> void:
 func day_pass_phase() -> void:
 	print("day successful!")
 	current_state = DayState.PASS
+	current_day = current_day + 1 # this doesn't visually update yet
 
 	# bring up interface to add / remove cards
 
-	# advance day number
+	GameManager.cook.move_offscreen()
+	await SignalBus.customer_done_moving
+
+	# fade out?
+	GameManager.HUD.fade_out(1.0)
+
+	await get_tree().create_timer(2.0).timeout
+	day_setup_phase()
 
 func day_fail_phase() -> void:
+	# This interrupts the order state machine so need to do some of that work
 	print("day failed!")
 	current_state = DayState.FAIL
 

@@ -23,7 +23,7 @@ var menu_data_path = "res://source/data/menu.json"
 var raw_data: Dictionary = {}
 var menu_size: int
 
-var current_difficulty: int = 12
+var current_difficulty: int = 1
 
 func _ready() -> void:
 	raw_data = load_json_file(menu_data_path)
@@ -36,7 +36,7 @@ func set_difficulty(value: int) -> void:
 func get_single_order() -> Order:
 	# todo: some way of locking some orders behind a min day / difficulty
 	var r = randi_range(0,menu_size-1)
-	# r = 2
+	# r = 0
 	var menu_item: Dictionary = raw_data[str(r)]
 	# print(menu_item)
 	var last: Order = order_scene.instantiate()
@@ -45,6 +45,7 @@ func get_single_order() -> Order:
 	return last
 
 func scale_taste_to_difficulty(new_order: Order) -> void:
+	# TODO: floor values so it doesn't return an all 0s order
 	var curr = new_order.taste_reqs
 	var reqs: Array[float] = [
 		curr["sweet"],
