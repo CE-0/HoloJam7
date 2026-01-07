@@ -21,10 +21,12 @@ script = ExtResource("1_b15hf")
 
 [node name="BellDone" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_dswmj")
+volume_db = -10.0
 bus = &"SFX"
 
 [node name="CardDiscard" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_eapec")
+volume_db = -4.0
 
 [node name="CardSelectA" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_ynbmr")

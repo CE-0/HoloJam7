@@ -8,6 +8,10 @@ func _ready() -> void:
 	#print("audio ready")
 	#start ost
 	pass
+	#for child in get_children():
+		#print("playing ", child.name)
+		#child.play()
+		#await child.finished
 
 func _process(_delta: float) -> void:
 	pass

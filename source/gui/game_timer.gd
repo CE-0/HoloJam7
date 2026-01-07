@@ -31,8 +31,14 @@ func decrement_time(value_s: float) -> void:
 		SignalBus.time_ran_out.emit()
 
 func update_face() -> void:
-	var seconds_left: int = round(time_left_s)
-	label.text = "0:%02d" % seconds_left
+	var temp: int = round(time_left_s)
+	var minutes_left: int = 0
+	while temp >= 60:
+		temp = temp - 60
+		minutes_left = minutes_left + 1
+	var seconds_left: int = temp
+
+	label.text = "%02d:%02d" % [minutes_left, seconds_left]
 
 func _on_time_penalty(value_s: float) -> void:
 	if not running:

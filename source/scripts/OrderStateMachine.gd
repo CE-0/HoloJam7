@@ -21,7 +21,7 @@ enum OrderState {
 	SELECT, # selecting ingredient cards
 	SERVE # serve order and collect feedback
 }
-var order_state: OrderState = OrderState.WAIT
+var current_state: OrderState = OrderState.WAIT
 
 var total_orders: int = 0
 var current_order: int = 0
@@ -35,7 +35,7 @@ func set_total_orders(value: int) -> void:
 
 func order_begin_phase() -> void:
 	# All the work done before a player can select cards
-	order_state = OrderState.BEGIN
+	current_state = OrderState.BEGIN
 
 	# ususally increment at end
 	if current_order == 0:
@@ -62,11 +62,11 @@ func order_begin_phase() -> void:
 
 func order_select_phase() -> void:
 	# Phase for player to play and reroll cards
-	order_state = OrderState.SELECT
+	current_state = OrderState.SELECT
 
 func order_serve_phase() -> void:
 	# Phase to complete the order and finish the loop
-	order_state = OrderState.SERVE
+	current_state = OrderState.SERVE
 
 	# Take order away
 
@@ -85,6 +85,7 @@ func order_serve_phase() -> void:
 	
 	if current_order == total_orders:
 		SignalBus.all_orders_completed.emit()
+		current_state = OrderState.WAIT
 	else:
 		current_order = current_order + 1
 		# automatically return to begin phase
@@ -95,5 +96,5 @@ func _on_serve_pressed() -> void:
 	# Instead of directly looking at the button, waits for 
 	# a redirect from manager, to prevent changing states multiple times in a frame
 
-	if order_state == OrderState.SELECT:
+	if current_state == OrderState.SELECT:
 		order_serve_phase()
