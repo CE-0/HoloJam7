@@ -16,7 +16,8 @@ var hand: Hand
 var HUD: GameUI
 var debugHUD: DevHUD
 var game_timer: GameTimer
-var game_over_menu: GameOverMenu
+var game_over_menu: GameOverMenu 
+var card_select_menu : CardSelectMenu
 
 var cook: Customer
 var customer: Customer
@@ -175,4 +176,11 @@ func _on_restart_day() -> void:
 	print("retrying day")
 	order_machine.reset()
 	reset_dish_hud()
-	day_machine.day_setup_phase()
+	day_machine.day_setup_phase() 
+
+func display_card_choices():
+	pass
+
+func on_end_day():
+	print("day over, pick your cards")
+	
