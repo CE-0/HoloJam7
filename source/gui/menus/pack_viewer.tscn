@@ -1,0 +1,78 @@
+[gd_scene load_steps=3 format=3 uid="uid://rci3f2t4gt5"]
+
+[ext_resource type="Script" uid="uid://sdbbhqmrqx28" path="res://source/gui/menus/pack_viewer.gd" id="1_df8jn"]
+[ext_resource type="PackedScene" uid="uid://4ylo0t6wf2a0" path="res://source/gui/card_image.tscn" id="2_gddhk"]
+
+[node name="PackViewer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_df8jn")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5882353)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CardGrid" type="GridContainer" parent="MarginContainer/HBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 15
+columns = 3
+
+[node name="CardImage" parent="MarginContainer/HBoxContainer/ScrollContainer/CardGrid" instance=ExtResource("2_gddhk")]
+layout_mode = 2
+
+[node name="CardImage2" parent="MarginContainer/HBoxContainer/ScrollContainer/CardGrid" instance=ExtResource("2_gddhk")]
+layout_mode = 2
+
+[node name="CardImage3" parent="MarginContainer/HBoxContainer/ScrollContainer/CardGrid" instance=ExtResource("2_gddhk")]
+layout_mode = 2
+
+[node name="CardImage4" parent="MarginContainer/HBoxContainer/ScrollContainer/CardGrid" instance=ExtResource("2_gddhk")]
+layout_mode = 2
+
+[node name="CardImage5" parent="MarginContainer/HBoxContainer/ScrollContainer/CardGrid" instance=ExtResource("2_gddhk")]
+layout_mode = 2
+
+[node name="CardImage6" parent="MarginContainer/HBoxContainer/ScrollContainer/CardGrid" instance=ExtResource("2_gddhk")]
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 156.0
+offset_top = 783.0
+offset_right = 279.0
+offset_bottom = 823.0
+text = "Close"
+
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bksmk5evfkfln"]
+[gd_scene load_steps=20 format=3 uid="uid://bksmk5evfkfln"]
 
 [ext_resource type="PackedScene" uid="uid://b2ii1dwbjera2" path="res://source/gui/menus/pause_menu.tscn" id="1_i7gob"]
 [ext_resource type="Script" uid="uid://densox0ndrugk" path="res://source/settings/dev_room_1.gd" id="1_l6tno"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cstfh15tab36h" path="res://source/gui/dev_hud.tscn" id="3_yeh31"]
 [ext_resource type="PackedScene" uid="uid://cjbwls52odjlx" path="res://source/scenes/pile.tscn" id="4_l6tno"]
 [ext_resource type="PackedScene" uid="uid://cqdrk0nxmcy38" path="res://source/gui/menus/game_over_menu.tscn" id="5_g0kuk"]
+[ext_resource type="PackedScene" uid="uid://rci3f2t4gt5" path="res://source/gui/menus/pack_viewer.tscn" id="6_go7e0"]
 [ext_resource type="Script" uid="uid://b0kwtgnhhbws6" path="res://source/scripts/OrderStateMachine.gd" id="6_qu3nr"]
 [ext_resource type="Script" uid="uid://n22j3cv3w83g" path="res://source/scripts/order_generator.gd" id="7_dv8nw"]
 [ext_resource type="Script" uid="uid://cxmkb0ao3skbl" path="res://source/scripts/DayStateMachine.gd" id="8_gt04f"]
@@ -33,6 +34,9 @@ mouse_filter = 1
 visible = false
 
 [node name="GameOverMenu" parent="CanvasLayer" instance=ExtResource("5_g0kuk")]
+visible = false
+
+[node name="PackViewer" parent="CanvasLayer" instance=ExtResource("6_go7e0")]
 visible = false
 
 [node name="Hand" parent="." instance=ExtResource("2_5olku")]

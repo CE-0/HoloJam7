@@ -20,6 +20,7 @@ signal serve_pressed() # emitted by hud, read by game manager
 signal time_ran_out() # emittd by gametimer
 signal time_penalty(value: float) # emitted by game manager, read by game timer
 signal restart_day # Emitted by fail screen
+signal view_pack(cards: Array[Variant]) # Emitted by piles and packs
 
 # dialog
 signal queue_textbox(text: String) # (todo) emitted by cutscene scenes, read by dialog box

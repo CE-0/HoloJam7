@@ -1,6 +1,7 @@
 class_name Card
 extends StaticBody2D
 
+@export var card_num: int
 @export var card_name: String
 @export var image_path: String
 @export var cost: int
@@ -29,16 +30,12 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-# func setup_from_data(name_c: String) -> void:
-# 	# Setup card info with given data
-# 	card_name = name_c
-# 	$NameLabel.text = card_name
-
 func setup_from_card_num(num: int) -> void:
 	# Look up the given card number in the cube and setup with that info
 	# Info todo: image
 	var info = CardCube.get_card_info(num)
 	
+	card_num = num
 	card_name = info["name"]
 	cost = int(info["cost"])
 
@@ -54,6 +51,9 @@ func get_taste_values() -> Dictionary:
 
 func get_cost() -> int:
 	return cost
+
+func get_num() -> int:
+	return card_num
 
 func update_face() -> void:
 	# pass all card info to the card ui

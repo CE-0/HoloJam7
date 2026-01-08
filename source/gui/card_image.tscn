@@ -1,0 +1,132 @@
+[gd_scene load_steps=8 format=3 uid="uid://4ylo0t6wf2a0"]
+
+[ext_resource type="Script" uid="uid://8ok8vt6yi2y0" path="res://source/gui/card_image.gd" id="1_8nwbb"]
+[ext_resource type="Texture2D" uid="uid://2kst3ugk7mym" path="res://assets/cards/icon_blank.png" id="2_u8lvd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_34yk4"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_jh6km"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_sqw48"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_a1oiy"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_63v6m"]
+font_size = 24
+
+[node name="CardImage" type="Control"]
+custom_minimum_size = Vector2(128, 232)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8nwbb")
+card_num = 4
+metadata/_edit_vertical_guides_ = [128.0]
+metadata/_edit_horizontal_guides_ = [206.0, 232.0]
+
+[node name="card template" type="TextureRect" parent="."]
+modulate = Color(0.49747366, 0.49747366, 0.49747366, 1)
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+scale = Vector2(1, 1.6)
+texture = ExtResource("2_u8lvd")
+
+[node name="Cost" type="Label" parent="."]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 12.0
+offset_right = 116.0
+offset_bottom = 46.0
+text = "0"
+label_settings = SubResource("LabelSettings_34yk4")
+horizontal_alignment = 2
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 64.0
+offset_top = 152.0
+offset_right = 104.0
+offset_bottom = 192.0
+
+[node name="StatA" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -90.0
+offset_right = -40.0
+offset_bottom = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_jh6km")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StatB" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -90.0
+offset_right = 50.0
+offset_bottom = -40.0
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_sqw48")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StatC" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -90.0
+offset_right = -40.0
+offset_bottom = 50.0
+grow_horizontal = 0
+text = "0"
+label_settings = SubResource("LabelSettings_a1oiy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StatD" type="Label" parent="Control"]
+layout_mode = 1
+offset_right = 50.0
+offset_bottom = 50.0
+text = "0"
+label_settings = SubResource("LabelSettings_63v6m")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 12.0
+offset_right = 119.0
+offset_bottom = 40.0
+text = "Name"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Count" type="Label" parent="."]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 205.0
+offset_right = 100.0
+offset_bottom = 228.0
+text = "x0"
+horizontal_alignment = 1
+vertical_alignment = 1

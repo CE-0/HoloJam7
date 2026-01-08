@@ -103,3 +103,8 @@ func update_count() -> void:
 		SignalBus.pile_empty.emit(self)
 	else:
 		set_card_backs_visible(true)
+
+func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	# View the piles in the pack_viewer
+	if Input.is_action_just_pressed("view_pile"):
+		SignalBus.view_pack.emit(cards)
