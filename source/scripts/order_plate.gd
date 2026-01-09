@@ -15,6 +15,8 @@ func move_onscreen() -> void:
 func move_offscreen(dir: float = -1.0) -> void:
 	# same as usual but specify a direction to move
 	# >0 is right, <0 is left
+
+	# TODO: change this to shrinking into the customer for a pass
 	self.scale.x = self.scale.x*-1
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(self, "position", initial_pos + Vector2(dir*2000,0), 0.4)

@@ -63,6 +63,17 @@ func update_face() -> void:
 	$Control/StatC.text = str(tasteDict["sour"])
 	$Control/StatD.text = str(tasteDict["umami"])
 	$Cost.text = str(cost)
+	
+	var verbose_str: String = ""
+	if tasteDict["sweet"] > 0:
+		verbose_str = verbose_str + str(tasteDict["sweet"]) + "x sweet\n" 
+	if tasteDict["salty"] > 0:
+		verbose_str = verbose_str + str(tasteDict["salty"]) + "x salty\n" 
+	if tasteDict["sour"] > 0:
+		verbose_str = verbose_str + str(tasteDict["sour"]) + "x sour\n" 
+	if tasteDict["umami"] > 0:
+		verbose_str = verbose_str + str(tasteDict["umami"]) + "x umami\n" 
+	$Control/Verbose.text = verbose_str
 
 func focus_on() -> void:
 	# transform the card so it's easier to read

@@ -24,6 +24,7 @@ var raw_data: Dictionary = {}
 var menu_size: int
 
 var current_difficulty: int = 1
+var last_order: int = -1
 
 func _ready() -> void:
 	raw_data = load_json_file(menu_data_path)
@@ -34,9 +35,16 @@ func set_difficulty(value: int) -> void:
 	current_difficulty = value
 
 func get_single_order() -> Order:
+	# Pick a random menu item to be the next order shown
 	# todo: some way of locking some orders behind a min day / difficulty
-	var r = randi_range(0,menu_size-1)
-	# r = 0
+
+	# streak protection
+	var r = randi_range(4,menu_size-1)
+	while r == last_order:
+		randi_range(4,menu_size-1)
+	last_order = r
+	# r = 0 # debug force
+
 	var menu_item: Dictionary = raw_data[str(r)]
 	# print(menu_item)
 	var last: Order = order_scene.instantiate()

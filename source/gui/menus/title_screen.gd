@@ -17,6 +17,7 @@ func _ready() -> void:
 func _on_new_pressed() -> void:
 	pass
 	#get_tree().change_scene_to_file("res://source/scenes/game.tscn")
+	get_tree().change_scene_to_file("res://source/settings/dev_room_1.tscn")
 
 func _on_continue_pressed() -> void:
 	pass

@@ -43,7 +43,7 @@ func day_setup_phase() -> void:
 	GameManager.set_total_order_num(total_orders)
 	GameManager.HUD.update_current_order_num(0)
 
-	GameManager.order_gen.set_difficulty(current_day)
+	GameManager.order_gen.set_difficulty(current_day+2)
 
 	GameManager.game_timer.setup(time_in_day)
 
