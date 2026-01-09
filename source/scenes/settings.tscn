@@ -27,3 +27,6 @@ offset_top = 174.0
 offset_right = 8.0
 offset_bottom = 182.0
 text = "BACK"
+
+[connection signal="button_down" from="save button" to="." method="save_settings"]
+[connection signal="button_down" from="back button" to="." method="back_to_main"]

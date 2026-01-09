@@ -1,0 +1,95 @@
+[gd_scene load_steps=6 format=3 uid="uid://cyh3tuxm0pbkm"]
+
+[ext_resource type="Script" uid="uid://cqm5wulm3cg75" path="res://source/gui/menus/card_select_menu.gd" id="1_heufy"]
+[ext_resource type="Texture2D" uid="uid://bvmx30geg4a86" path="res://assets/ui/UI_Clock_cropped.png" id="2_qgceg"]
+[ext_resource type="FontFile" uid="uid://b00a6crxmm10e" path="res://assets/fonts/Pix32.ttf" id="3_igaf6"]
+[ext_resource type="PackedScene" uid="uid://bgwbbuj7c411i" path="res://source/gui/card_option.tscn" id="4_qgceg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7otw0"]
+font = ExtResource("3_igaf6")
+font_size = 48
+outline_size = 14
+outline_color = Color(0.8627451, 0.4392157, 0.27058825, 1)
+
+[node name="CardSelectMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_heufy")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 510.0
+color = Color(0.07005155, 0.066660166, 0.066660166, 0.5882353)
+
+[node name="Confirm" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 200.0
+offset_right = 477.0
+offset_bottom = 319.0
+size_flags_horizontal = 2
+texture_normal = ExtResource("2_qgceg")
+
+[node name="Label" type="Label" parent="Confirm"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "CONFIRM"
+label_settings = SubResource("LabelSettings_7otw0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Card Choices" type="GridContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 5
+
+[node name="CardOption" parent="Card Choices" instance=ExtResource("4_qgceg")]
+layout_mode = 2
+
+[node name="CardOption2" parent="Card Choices" instance=ExtResource("4_qgceg")]
+layout_mode = 2
+
+[node name="CardOption3" parent="Card Choices" instance=ExtResource("4_qgceg")]
+layout_mode = 2
+
+[node name="CardOption4" parent="Card Choices" instance=ExtResource("4_qgceg")]
+layout_mode = 2
+
+[node name="CardOption5" parent="Card Choices" instance=ExtResource("4_qgceg")]
+layout_mode = 2
+
+[node name="Current Deck" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 241.0
+offset_right = 72.0
+offset_bottom = 281.0
+columns = 5
+
+[node name="CardOption" parent="Current Deck" instance=ExtResource("4_qgceg")]
+layout_mode = 2
+
+[node name="CardOption2" parent="Current Deck" instance=ExtResource("4_qgceg")]
+layout_mode = 2
+
+[node name="CardOption3" parent="Current Deck" instance=ExtResource("4_qgceg")]
+layout_mode = 2
+
+[node name="CardOption4" parent="Current Deck" instance=ExtResource("4_qgceg")]
+layout_mode = 2
+
+[node name="CardOption5" parent="Current Deck" instance=ExtResource("4_qgceg")]
+layout_mode = 2
+
+[connection signal="button_down" from="Confirm" to="." method="on_confirm"]

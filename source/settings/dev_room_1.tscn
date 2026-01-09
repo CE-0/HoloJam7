@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cqdrk0nxmcy38" path="res://source/gui/menus/game_over_menu.tscn" id="5_g0kuk"]
 [ext_resource type="PackedScene" uid="uid://rci3f2t4gt5" path="res://source/gui/menus/pack_viewer.tscn" id="6_go7e0"]
 [ext_resource type="Script" uid="uid://b0kwtgnhhbws6" path="res://source/scripts/OrderStateMachine.gd" id="6_qu3nr"]
+[ext_resource type="PackedScene" uid="uid://cyh3tuxm0pbkm" path="res://source/gui/menus/card_select_menu.tscn" id="7_dsn44"]
 [ext_resource type="Script" uid="uid://n22j3cv3w83g" path="res://source/scripts/order_generator.gd" id="7_dv8nw"]
 [ext_resource type="Script" uid="uid://cxmkb0ao3skbl" path="res://source/scripts/DayStateMachine.gd" id="8_gt04f"]
 [ext_resource type="Texture2D" uid="uid://d0bk1sq0hnac5" path="res://assets/ui/UI_BG.png" id="9_gu6sm"]
@@ -38,6 +39,9 @@ visible = false
 visible = false
 
 [node name="PackViewer" parent="CanvasLayer" instance=ExtResource("6_go7e0")]
+visible = false
+
+[node name="CardSelectMenu" parent="CanvasLayer" instance=ExtResource("7_dsn44")]
 visible = false
 
 [node name="Hand" parent="." instance=ExtResource("2_5olku")]
