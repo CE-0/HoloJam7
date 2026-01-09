@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bksmk5evfkfln"]
+[gd_scene load_steps=21 format=3 uid="uid://bksmk5evfkfln"]
 
 [ext_resource type="PackedScene" uid="uid://b2ii1dwbjera2" path="res://source/gui/menus/pause_menu.tscn" id="1_i7gob"]
 [ext_resource type="Script" uid="uid://densox0ndrugk" path="res://source/settings/dev_room_1.gd" id="1_l6tno"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://bsiod0rh65nx7" path="res://source/scripts/customer.gd" id="14_eaqo6"]
 [ext_resource type="Texture2D" uid="uid://dxaob4yd5llv2" path="res://assets/cursor_none.png" id="14_mwrjf"]
 [ext_resource type="Script" uid="uid://io071xrea3bq" path="res://source/scripts/mouse_pointer.gd" id="15_0wurm"]
+[ext_resource type="PackedScene" uid="uid://0q5fxwpt61fo" path="res://source/scenes/order_plate.tscn" id="20_dsn44"]
 
 [node name="DevRoom1" type="Node"]
 script = ExtResource("1_l6tno")
@@ -51,6 +52,11 @@ position = Vector2(562, 957)
 z_index = 5
 position = Vector2(1789, 957)
 
+[node name="OrderPlate" parent="." instance=ExtResource("20_dsn44")]
+z_index = 5
+position = Vector2(741, 781)
+scale = Vector2(1.5, 1.5)
+
 [node name="OrderStateMachine" type="Node" parent="."]
 script = ExtResource("6_qu3nr")
 
@@ -60,9 +66,12 @@ script = ExtResource("8_gt04f")
 [node name="OrderGenerator" type="Node" parent="."]
 script = ExtResource("7_dv8nw")
 
-[node name="UiBg" type="Sprite2D" parent="."]
+[node name="UiBg" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 texture = ExtResource("9_gu6sm")
-centered = false
 
 [node name="Customer" parent="." instance=ExtResource("12_tsjc1")]
 position = Vector2(1454, 419)

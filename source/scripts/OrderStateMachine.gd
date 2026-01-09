@@ -62,6 +62,7 @@ func order_serve_phase() -> void:
 	current_state = OrderState.SERVE
 
 	# Take order away
+	GameManager.plate.move_offscreen(1.0)
 
 	# Hide customer
 	GameManager.customer.move_offscreen()

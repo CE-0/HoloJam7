@@ -6,7 +6,10 @@ func _ready() -> void:
 
 func reveal() -> void:
 	# extra flair here later
+	self.modulate = Color.TRANSPARENT
 	self.show()
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property(self, "modulate", Color.WHITE, 1.0)
 
 func _on_retry_pressed() -> void:
 	self.hide()

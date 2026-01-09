@@ -18,6 +18,7 @@ var debugHUD: DevHUD
 var game_timer: GameTimer
 var game_over_menu: GameOverMenu
 
+var plate: OrderPlate
 var cook: Customer
 var customer: Customer
 var order_gen: OrderGenerator
@@ -73,6 +74,9 @@ func get_new_order(order_num: int) -> void:
 
 	# super awkward here
 	customer.say_order(current_order)
+	plate.set_food(current_order)
+	await get_tree().create_timer(0.1).timeout
+	plate.move_onscreen()
 
 func add_values_to_dish(tastes: Dictionary) -> void:
 	dish_taste["sweet"] = dish_taste["sweet"] + tastes["sweet"]

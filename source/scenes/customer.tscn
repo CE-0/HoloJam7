@@ -20,4 +20,5 @@ texture = ExtResource("3_2tjmj")
 [node name="Food" type="Sprite2D" parent="Bubble"]
 unique_name_in_owner = true
 position = Vector2(-3, -21)
+scale = Vector2(-1, 1)
 texture = ExtResource("4_qvlsa")
