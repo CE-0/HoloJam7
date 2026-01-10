@@ -23,8 +23,11 @@ func update_grid():
 		card.card_img.setup_from_card_num(Global.deck[x])
 
 func clear_children(node):
-	for c in node.get_children():
-		c.queue_free()
+	if (node.get_child_count() > 0):
+		for c in range(node.get_child_count() - 1, -1, -1):
+			node.get_child(c).queue_free()
+	else: 
+		return
 
 func remove_selection():
 	for x in range(0, deck_grid.get_child_count()):
