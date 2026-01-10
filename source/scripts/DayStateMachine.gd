@@ -74,6 +74,10 @@ func day_pass_phase() -> void:
 	# fade out?
 	#GameManager.HUD.fade_out(1.0)
 
+	# remove after card select works
+	await get_tree().create_timer(2.0).timeout
+	day_setup_phase()
+
 func day_fail_phase() -> void:
 	# This interrupts the order state machine so need to do some of that work
 	print("day failed!")

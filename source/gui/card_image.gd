@@ -21,7 +21,7 @@ func setup_from_card_num(num: int) -> void:
 	#{ "image": "res://icon.svg", "name": "Card 0", "cost": 0.0, 
 	# 	"taste_profile": { "sweet": 0.0, "salty": 0.0, "sour": 0.0, "umami": 0.0 } }
 	var info: Dictionary = CardCube.get_card_info(num)
-	print("info: ", info)
+	#print("info: ", info)
 	
 	$NameLabel.text = info["name"]
 	$Cost.text = str(int(info["cost"]))

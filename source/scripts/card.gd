@@ -11,6 +11,16 @@ extends StaticBody2D
 	"sour": 0,
 	"umami" : 0
 }
+@export var special: bool = false
+
+# Bonus power can be an int or an array of two ints or null
+# If it's an int, it will apply that constant value to one of the taste profiles
+# if its an array, the array defines a range of values to be randomly selected from, then applied
+var bonus_power: Variant
+# Bonus profile is an array with 1-4 items representing the taste profiles or null
+# The rng selected profile will be the target of the bonus power
+var bonus_profile: Variant
+# Note I said ints but json stores floats so work with that for now
 
 enum State {
 	PILE,
@@ -24,8 +34,13 @@ var tween_t: Tween # tween dedicated to transform
 var neutral_transform: Transform2D
 var neutral_z_idx: int
 
+@onready var image_generic: Sprite2D = %image_generic
+@onready var image_special: Sprite2D = %image_special
+@onready var image_food: Sprite2D = %image_food
+
 func _ready() -> void:
 	pass
+	# setup_from_card_num(card_num)
 
 func _process(_delta: float) -> void:
 	pass
@@ -34,20 +49,44 @@ func setup_from_card_num(num: int) -> void:
 	# Look up the given card number in the cube and setup with that info
 	# Info todo: image
 	var info = CardCube.get_card_info(num)
-	
+
 	card_num = num
 	card_name = info["name"]
 	cost = int(info["cost"])
+	special = info["special"]
+	image_path = info["image"]
 
 	tasteDict["sweet"] = int(info["taste_profile"]["sweet"])
 	tasteDict["salty"] = int(info["taste_profile"]["salty"])
 	tasteDict["sour"] = int(info["taste_profile"]["sour"])
 	tasteDict["umami"] = int(info["taste_profile"]["umami"])
 
+	if info["special"]:
+		bonus_power = info["bonus_power"]
+		bonus_profile = info["bonus_profile"]
+	else:
+		bonus_power = null
+		bonus_power = null
+
 	update_face()
 
 func get_taste_values() -> Dictionary:
-	return tasteDict
+	var last = tasteDict.duplicate_deep()
+
+	# read or rng the power
+	var power = 0
+	if bonus_power is Array:
+		power = randi_range(bonus_power[0], bonus_power[1])
+	else:
+		power = bonus_power
+
+	# rng the target (always an array)
+	var target = bonus_profile.pick_random()
+
+	# apply bonus
+	var idx = ["sweet", "salty", "soul", "umami"][target]
+	last[idx] = last[idx] + power
+	return last
 
 func get_cost() -> int:
 	return cost
@@ -58,21 +97,62 @@ func get_num() -> int:
 func update_face() -> void:
 	# pass all card info to the card ui
 	$NameLabel.text = card_name
-	$Control/StatA.text = str(tasteDict["sweet"])
-	$Control/StatB.text = str(tasteDict["salty"])
-	$Control/StatC.text = str(tasteDict["sour"])
-	$Control/StatD.text = str(tasteDict["umami"])
 	$Cost.text = str(cost)
-	
+
+	image_food.texture = load(image_path)
+	image_generic.visible = not special
+	image_special.visible = special
+
+	# Bonus text
+	# not implemented atm
+	var bonus_a = ""
+	var bonus_b = ""
+	var bonus_c = ""
+	var bonus_d = ""
+	# if special:
+	# 	if 0.0 in bonus_profile:
+	# 		bonus_a = "+?"
+	# 	if 1.0 in bonus_profile:
+	# 		bonus_b = "+?"
+	# 	if 2.0 in bonus_profile:
+	# 		bonus_c = "+?"
+	# 	if 3.0 in bonus_profile:
+	# 		bonus_d = "+?"
+
 	var verbose_str: String = ""
-	if tasteDict["sweet"] > 0:
-		verbose_str = verbose_str + str(tasteDict["sweet"]) + "x sweet\n" 
-	if tasteDict["salty"] > 0:
-		verbose_str = verbose_str + str(tasteDict["salty"]) + "x salty\n" 
-	if tasteDict["sour"] > 0:
-		verbose_str = verbose_str + str(tasteDict["sour"]) + "x sour\n" 
-	if tasteDict["umami"] > 0:
-		verbose_str = verbose_str + str(tasteDict["umami"]) + "x umami\n" 
+	if tasteDict["sweet"] > 0:# or (special and 1.0 in bonus_profile):
+		verbose_str = verbose_str + "+" + str(tasteDict["sweet"]) + bonus_a + " sweet\n"
+	if tasteDict["salty"] > 0:# or (special and 2.0 in bonus_profile):
+		verbose_str = verbose_str + "+" + str(tasteDict["salty"]) + bonus_b + " salty\n"
+	if tasteDict["sour"] > 0:# or (special and 3.0 in bonus_profile):
+		verbose_str = verbose_str + "+" + str(tasteDict["sour"]) + bonus_c + " sour\n"
+	if tasteDict["umami"] > 0:# or (special and 4.0 in bonus_profile):
+		verbose_str = verbose_str + "+" + str(tasteDict["umami"]) + bonus_d + " umami\n"
+
+	# I'd like to indicate which tastes can get the bonus, but will have to come back to that
+	# For now, if the numbers are known, fill them in
+	# if not, use ? marks
+	# +? to ?
+	# +4 to ?
+	# +? to sw.
+	if special:
+		# + num or ?
+		verbose_str = verbose_str + "+"
+		if bonus_power is Array:
+			verbose_str = verbose_str + "?"
+		else:
+			verbose_str = verbose_str + str(int(bonus_power))
+		# + num or ?
+		verbose_str = verbose_str + " to "
+		if bonus_profile.size() == 1:
+			verbose_str = verbose_str + str({0.0: "sw.", 1.0: "sa.", 2.0: "so.", 3.0: "um."}[bonus_profile[0]])
+		else:
+			verbose_str = verbose_str + "?"
+
+		# trying fuller text
+		# might work but its very wide
+		# for item in bonus_profile:
+		# 	verbose_str = verbose_str + " " + str({0: "sw.", 1: "sa.", 2: "so.", 3: "um."}[int(item)])
 	$Control/Verbose.text = verbose_str
 
 func focus_on() -> void:

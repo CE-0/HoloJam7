@@ -1,5 +1,6 @@
 {
 	"0": {
+		"special": false,
 		"image": "res://icon.svg",
 		"name": "Card 0",
 		"cost": 0,
@@ -11,8 +12,9 @@
 		}
 	},
 	"1": {
-		"image": "res://icon.svg",
-		"name": "Card 1",
+		"special": true,
+		"image": "res://assets/ingredients/Apple.png",
+		"name": "Apple",
 		"cost": 1,
 		"taste_profile": {
 			"sweet" : 1,
@@ -22,8 +24,9 @@
 		}
 	},
 	"2": {
-		"image": "res://icon.svg",
-		"name": "Card 2",
+		"special": true,
+		"image": "res://assets/ingredients/Cheese.png",
+		"name": "Cheese",
 		"cost": 2,
 		"taste_profile": {
 			"sweet" : 0,
@@ -33,8 +36,9 @@
 		}
 	},
 	"3": {
-		"image": "res://icon.svg",
-		"name": "Card 3",
+		"special": false,
+		"image": "res://assets/ingredients/Lemon.png",
+		"name": "Lemon",
 		"cost": 1,
 		"taste_profile": {
 			"sweet" : 0,
@@ -44,8 +48,9 @@
 		}
 	},
 	"4": {
-		"image": "res://icon.svg",
-		"name": "Card 4",
+		"special": false,
+		"image": "res://assets/ingredients/Egg.png",
+		"name": "Egg",
 		"cost": 2,
 		"taste_profile": {
 			"sweet" : 0,
@@ -53,5 +58,33 @@
 			"sour": 0,
 			"umami" : 1
 		}
+	},
+	"10": {
+		"special": true,
+		"name": "H ingr one",
+		"image": "res://icon.svg",
+		"cost": 0,
+		"taste_profile": {
+			"sweet" : 0,
+			"salty": 0,
+			"sour": 0,
+			"umami" : 0
+		},
+		"bonus_power": 4,
+		"bonus_profile": [0,1]
+	},
+	"11": {
+		"special": true,
+		"name": "H ingr two",
+		"image": "res://icon.svg",
+		"cost": 0,
+		"taste_profile": {
+			"sweet" : 0,
+			"salty": 0,
+			"sour": 0,
+			"umami" : 0
+		},
+		"bonus_power": [1,5],
+		"bonus_profile": [3]
 	}
 }
