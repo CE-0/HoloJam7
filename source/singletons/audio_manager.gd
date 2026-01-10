@@ -13,9 +13,9 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	pass
-	if Input.is_action_just_pressed("debug_0"):
+	# if Input.is_action_just_pressed("debug_0"):
 		#play("TestBeep")
-		soundtrack_fade_in()
+		# soundtrack_fade_in()
 	if Input.is_action_just_pressed("toggle_music"):
 		toggle_music()
 

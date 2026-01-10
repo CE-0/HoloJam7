@@ -6,7 +6,8 @@ var save_path = "user://hcmsavedata.json"
 
 var game_data : Dictionary
 var music_vol : float
-var sfx_vol : float 
+var sfx_vol : float
+var window_size: int = 720 # manual default
 
 var deck : Array[int]
 
@@ -45,7 +46,12 @@ func save_data():
 	return
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void: 
+func _ready() -> void:
+	# Default visuals
+	var screen_size: Vector2i = DisplayServer.screen_get_size()
+	if screen_size.y < 1080 and window_size != 720:
+		set_window_720()
+
 	game_data = load_data(default_save) # temp until newgame / continue options are added
 	#game_data = load_file()
 	music_vol = game_data["volume_settings"]["music"] 
@@ -56,4 +62,21 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if Input.is_action_just_pressed("debug_0"):
+		toggle_window_size()
+
+func toggle_window_size() -> void:
+	# This only works on desktop pretty sure
+	if window_size == 720:
+		set_window_1080()
+	else:
+		set_window_720()
+
+func set_window_1080() -> void:
+	DisplayServer.window_set_size(Vector2i(1920, 1080))
+	window_size = 1080
+
+func set_window_720() -> void:
+	DisplayServer.window_set_size(Vector2i(1280, 720))
+	window_size = 720
+	DisplayServer.window_set_position(Vector2(0,125)) # so the title bar is still visible
