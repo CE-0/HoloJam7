@@ -71,7 +71,22 @@ func setup_from_card_num(num: int) -> void:
 	update_face()
 
 func get_taste_values() -> Dictionary:
-	return tasteDict
+	var last = tasteDict.duplicate_deep()
+
+	# read or rng the power
+	var power = 0
+	if bonus_power is Array:
+		power = randi_range(bonus_power[0], bonus_power[1])
+	else:
+		power = bonus_power
+
+	# rng the target (always an array)
+	var target = bonus_profile.pick_random()
+
+	# apply bonus
+	var idx = ["sweet", "salty", "soul", "umami"][target]
+	last[idx] = last[idx] + power
+	return last
 
 func get_cost() -> int:
 	return cost
@@ -113,7 +128,7 @@ func update_face() -> void:
 		verbose_str = verbose_str + "+" + str(tasteDict["sour"]) + bonus_c + " sour\n"
 	if tasteDict["umami"] > 0:# or (special and 4.0 in bonus_profile):
 		verbose_str = verbose_str + "+" + str(tasteDict["umami"]) + bonus_d + " umami\n"
-	
+
 	# I'd like to indicate which tastes can get the bonus, but will have to come back to that
 	# For now, if the numbers are known, fill them in
 	# if not, use ? marks
