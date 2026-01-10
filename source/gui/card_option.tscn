@@ -8,22 +8,24 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -948.0
+offset_bottom = -485.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6qaqn")
 
-[node name="CheckBox" type="CheckBox" parent="."]
-layout_mode = 0
-offset_left = -128.00002
-offset_top = -116.99999
-offset_right = -103.000015
-offset_bottom = -85.99999
-scale = Vector2(2.5, 2.5)
-
 [node name="CardImage" parent="." instance=ExtResource("2_6qaqn")]
 layout_mode = 1
-offset_left = -66.0
-offset_top = -99.0
-offset_right = -1016.0
-offset_bottom = -587.0
-card_num = -1
+offset_left = -1.0
+offset_top = 2.0
+offset_right = -5.0
+offset_bottom = -1.0
+
+[node name="ColorRect" type="ColorRect" parent="CardImage"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 128.0
+offset_bottom = 204.0
+color = Color(0, 0, 0, 0.7058824)
+
+[connection signal="gui_input" from="." to="." method="_on_card_image_gui_input"]

@@ -80,16 +80,19 @@ vertical_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Control"]
 layout_mode = 0
-offset_left = 81.0
-offset_top = 175.0
-offset_right = 1320.0
-offset_bottom = 532.0
+offset_left = 74.0
+offset_top = 122.0
+offset_right = 1313.0
+offset_bottom = 628.0
 
 [node name="Card Choices" type="GridContainer" parent="Control/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 0
-columns = 4
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_constants/h_separation = 175
+theme_override_constants/v_separation = 250
+columns = 3
 
 [node name="CardOption" parent="Control/ScrollContainer/Card Choices" instance=ExtResource("4_qgceg")]
 layout_mode = 2
@@ -109,9 +112,9 @@ layout_mode = 2
 [node name="Confirm" type="TextureButton" parent="Control"]
 layout_mode = 0
 offset_left = 545.0
-offset_top = 579.0
+offset_top = 645.0
 offset_right = 916.0
-offset_bottom = 698.0
+offset_bottom = 764.0
 size_flags_horizontal = 2
 texture_normal = ExtResource("2_qgceg")
 
