@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cecqfhp7ci7rn"]
+[gd_scene load_steps=12 format=3 uid="uid://cecqfhp7ci7rn"]
 
 [ext_resource type="Script" uid="uid://cb15b8qpxdf6y" path="res://source/scripts/card.gd" id="1_vbr0r"]
 [ext_resource type="Texture2D" uid="uid://2kst3ugk7mym" path="res://assets/cards/icon_blank.png" id="2_onr8g"]
@@ -23,20 +23,7 @@ font_size = 42
 outline_size = 14
 outline_color = Color(0.8627451, 0.4392157, 0.27058825, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_onr8g"]
-font_size = 24
-
-[sub_resource type="LabelSettings" id="LabelSettings_qulsp"]
-font_size = 24
-
-[sub_resource type="LabelSettings" id="LabelSettings_cln5f"]
-font_size = 24
-
-[sub_resource type="LabelSettings" id="LabelSettings_ximjd"]
-font_size = 24
-
-[sub_resource type="LabelSettings" id="LabelSettings_t0pk3"]
-line_spacing = 2.0
+[sub_resource type="LabelSettings" id="LabelSettings_bwceg"]
 font = ExtResource("5_ximjd")
 font_size = 37
 outline_size = 8
@@ -45,6 +32,7 @@ outline_color = Color(0.8627451, 0.4392157, 0.27058825, 1)
 [node name="card" type="StaticBody2D"]
 input_pickable = true
 script = ExtResource("1_vbr0r")
+card_num = 1
 
 [node name="sprites" type="Node2D" parent="."]
 
@@ -106,68 +94,10 @@ vertical_alignment = 2
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_top = 42.0
-offset_right = 40.0
-offset_bottom = 82.0
-
-[node name="StatA" type="Label" parent="Control"]
-visible = false
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -90.0
-offset_top = -90.0
-offset_right = -40.0
-offset_bottom = -40.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "0"
-label_settings = SubResource("LabelSettings_onr8g")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="StatB" type="Label" parent="Control"]
-visible = false
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -90.0
-offset_right = 50.0
-offset_bottom = -40.0
-grow_vertical = 0
-text = "0"
-label_settings = SubResource("LabelSettings_qulsp")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="StatC" type="Label" parent="Control"]
-visible = false
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -90.0
-offset_right = -40.0
-offset_bottom = 50.0
-grow_horizontal = 0
-text = "0"
-label_settings = SubResource("LabelSettings_cln5f")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="StatD" type="Label" parent="Control"]
-visible = false
-layout_mode = 1
-offset_right = 50.0
-offset_bottom = 50.0
-text = "0"
-label_settings = SubResource("LabelSettings_ximjd")
-horizontal_alignment = 1
-vertical_alignment = 1
+offset_left = -67.0
+offset_top = -101.0
+offset_right = 67.0
+offset_bottom = 100.0
 
 [node name="Verbose" type="Label" parent="Control"]
 layout_mode = 1
@@ -176,20 +106,20 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -62.0
-offset_top = -92.0
-offset_right = 80.0
-offset_bottom = 66.0
+offset_left = -94.0
+offset_top = -161.0
+offset_right = 94.0
+offset_bottom = 59.758667
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.58, 0.58)
-text = "1x sweet
-1x sour
-2x salty
-2x umami"
-label_settings = SubResource("LabelSettings_t0pk3")
+pivot_offset = Vector2(94, 38)
+text = "sweet +2
+sour +2
++4 to ?"
+label_settings = SubResource("LabelSettings_bwceg")
 horizontal_alignment = 1
-vertical_alignment = 1
+vertical_alignment = 2
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

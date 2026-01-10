@@ -33,8 +33,10 @@ func get_card_info(card_num: int) -> Dictionary:
 	valid = valid and "image" in last
 	valid = valid and "taste_profile" in last
 	valid = valid and "special" in last
-	if not valid:
-		push_warning("Incomplete card info ", card_num)
-		return {}
+	# if special is true, these two must exist. If false, dont really care
+	if last["special"]:
+		valid = valid and "bonus_power" in last
+		valid = valid and "bonus_profile" in last
+	assert(valid, str("Incomplete card info ", card_num))
 
 	return last
