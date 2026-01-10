@@ -32,6 +32,7 @@ func get_card_info(card_num: int) -> Dictionary:
 	valid = valid and "cost" in last
 	valid = valid and "image" in last
 	valid = valid and "taste_profile" in last
+	valid = valid and "special" in last
 	if not valid:
 		push_warning("Incomplete card info ", card_num)
 		return {}

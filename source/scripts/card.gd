@@ -11,6 +11,7 @@ extends StaticBody2D
 	"sour": 0,
 	"umami" : 0
 }
+@export var special: bool = false
 
 enum State {
 	PILE,
@@ -23,6 +24,9 @@ var current_state: int = State.HELD
 var tween_t: Tween # tween dedicated to transform
 var neutral_transform: Transform2D
 var neutral_z_idx: int
+
+@onready var image_generic: Sprite2D = %image_generic
+@onready var image_special: Sprite2D = %image_special
 
 func _ready() -> void:
 	pass
@@ -38,6 +42,7 @@ func setup_from_card_num(num: int) -> void:
 	card_num = num
 	card_name = info["name"]
 	cost = int(info["cost"])
+	special = info["special"]
 
 	tasteDict["sweet"] = int(info["taste_profile"]["sweet"])
 	tasteDict["salty"] = int(info["taste_profile"]["salty"])
@@ -63,7 +68,10 @@ func update_face() -> void:
 	$Control/StatC.text = str(tasteDict["sour"])
 	$Control/StatD.text = str(tasteDict["umami"])
 	$Cost.text = str(cost)
-	
+
+	image_generic.visible = not special
+	image_special.visible = special
+
 	var verbose_str: String = ""
 	if tasteDict["sweet"] > 0:
 		verbose_str = verbose_str + str(tasteDict["sweet"]) + "x sweet\n" 
@@ -74,6 +82,8 @@ func update_face() -> void:
 	if tasteDict["umami"] > 0:
 		verbose_str = verbose_str + str(tasteDict["umami"]) + "x umami\n" 
 	$Control/Verbose.text = verbose_str
+	
+	
 
 func focus_on() -> void:
 	# transform the card so it's easier to read
