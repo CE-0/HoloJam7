@@ -17,6 +17,7 @@ var HUD: GameUI
 var debugHUD: DevHUD
 var game_timer: GameTimer
 var game_over_menu: GameOverMenu 
+var card_discard_menu : CardDiscardMenu
 var card_select_menu : CardSelectMenu
 
 var plate: OrderPlate
@@ -34,7 +35,8 @@ var dish_taste = {
 	"umami": 0
 }
 var current_order: Order
-var total_orders: int
+var total_orders: int 
+var deck : Array[int]
 
 func _ready() -> void:
 	SignalBus.discard.connect(_on_discard)
@@ -42,7 +44,9 @@ func _ready() -> void:
 	SignalBus.card_tapped.connect(_on_card_tapped)
 	SignalBus.pile_empty.connect(_on_pile_empty)
 	SignalBus.serve_pressed.connect(_on_serve_pressed)
-	SignalBus.restart_day.connect(_on_restart_day)
+	SignalBus.restart_day.connect(_on_restart_day) 
+	deck = Global.deck
+	deck.shuffle()
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("debug_0"):
@@ -52,10 +56,10 @@ func game_start() -> void:
 	#await get_tree().process_frame
 	# dev: fill draw pile with dummy deck
 	var card_scene = preload("res://source/scenes/card.tscn")
-	for x in range(0,20):
+	for x in range(0,len(deck)):
 		var card = card_scene.instantiate()
 		add_child(card)
-		card.setup_from_card_num(randi_range(1,4))
+		card.setup_from_card_num(deck[x])
 		draw_pile.add_card(card)
 
 	await get_tree().create_timer(0.5).timeout # ?
@@ -188,5 +192,11 @@ func display_card_choices():
 	pass
 
 func on_end_day():
-	print("day over, pick your cards")
-	
+	print("day over, pick your cards") 
+
+func begin_card_selection():
+	card_discard_menu.update_grid()
+	card_discard_menu.show() 
+
+func continue_card_slection():
+	card_select_menu.show()

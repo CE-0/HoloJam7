@@ -2,16 +2,13 @@ class_name CardSelectMenu
 extends Control 
 
 @onready var new_choices_grid = $"Card Choices"
-@onready var current_deck_grid = $"Current Deck" 
 
-var new_options = null
-var current_deck = null
 var number_selected = 0 
+var new_cards = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	new_options = new_choices_grid.get_children() 
-	current_deck = current_deck_grid.get_children()
+	new_cards = new_choices_grid.get_children() 
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,8 +20,8 @@ func update_current_deck():
 	pass
 
 func on_confirm():
-	if (number_selected != 5):
-		print("Choose five cards, please")
+	if (number_selected > 3):
+		print("Choose only three cards, please")
 		return 
 	else: 
 		self.hide()

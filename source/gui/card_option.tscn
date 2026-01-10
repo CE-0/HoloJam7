@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bgwbbuj7c411i"]
 
 [ext_resource type="Script" uid="uid://cuap7jvwvsb22" path="res://source/gui/card_option.gd" id="1_6qaqn"]
-[ext_resource type="Script" path="res://source/gui/card_image.gd" id="2_rteuc"]
+[ext_resource type="Script" uid="uid://8ok8vt6yi2y0" path="res://source/gui/card_image.gd" id="2_rteuc"]
 
 [node name="CardOption" type="Control"]
 layout_mode = 3

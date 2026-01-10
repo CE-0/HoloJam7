@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://8vu4176fg1b6"]
+
+[ext_resource type="Script" uid="uid://i3uuedyhswqs" path="res://source/gui/menus/card_discard_menu.gd" id="1_jytat"]
+[ext_resource type="Texture2D" uid="uid://bvmx30geg4a86" path="res://assets/ui/UI_Clock_cropped.png" id="2_qra3p"]
+[ext_resource type="FontFile" uid="uid://b00a6crxmm10e" path="res://assets/fonts/Pix32.ttf" id="3_xqiqj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_psedw"]
+font = ExtResource("3_xqiqj")
+font_size = 48
+outline_size = 14
+outline_color = Color(0.8627451, 0.4392157, 0.27058825, 1)
+
+[node name="CardDiscardMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jytat")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 576.0
+offset_bottom = 293.0
+color = Color(0, 0, 0, 0.5882353)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_right = 577.0
+offset_bottom = 293.0
+
+[node name="Deck Grid" type="GridContainer" parent="ScrollContainer"]
+layout_mode = 2
+columns = 5
+
+[node name="Next" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 329.0
+offset_right = 477.0
+offset_bottom = 448.0
+size_flags_horizontal = 2
+texture_normal = ExtResource("2_qra3p")
+
+[node name="Label" type="Label" parent="Next"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "NEXT"
+label_settings = SubResource("LabelSettings_psedw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Next" to="." method="on_next_pressed"]

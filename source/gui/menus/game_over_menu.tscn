@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cqdrk0nxmcy38"]
 
 [ext_resource type="Texture2D" uid="uid://bjhjuhahf0lpi" path="res://assets/ui/UI_Bottom.png" id="1_64pms"]
-[ext_resource type="Script" path="res://source/gui/menus/game_over_menu.gd" id="1_si2al"]
+[ext_resource type="Script" uid="uid://cnujwwe0go3jm" path="res://source/gui/menus/game_over_menu.gd" id="1_si2al"]
 [ext_resource type="Texture2D" uid="uid://bvmx30geg4a86" path="res://assets/ui/UI_Clock_cropped.png" id="2_aqkl6"]
 [ext_resource type="FontFile" uid="uid://bb7mjr65gyr7i" path="res://assets/fonts/04B_30__.TTF" id="3_si2al"]
 [ext_resource type="FontFile" uid="uid://b00a6crxmm10e" path="res://assets/fonts/Pix32.ttf" id="5_genlh"]

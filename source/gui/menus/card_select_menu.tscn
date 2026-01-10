@@ -48,48 +48,28 @@ label_settings = SubResource("LabelSettings_7otw0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Card Choices" type="GridContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Card Choices" type="GridContainer" parent="ScrollContainer"]
+layout_mode = 2
 columns = 5
 
-[node name="CardOption" parent="Card Choices" instance=ExtResource("4_qgceg")]
+[node name="CardOption" parent="ScrollContainer/Card Choices" instance=ExtResource("4_qgceg")]
 layout_mode = 2
 
-[node name="CardOption2" parent="Card Choices" instance=ExtResource("4_qgceg")]
+[node name="CardOption2" parent="ScrollContainer/Card Choices" instance=ExtResource("4_qgceg")]
 layout_mode = 2
 
-[node name="CardOption3" parent="Card Choices" instance=ExtResource("4_qgceg")]
+[node name="CardOption3" parent="ScrollContainer/Card Choices" instance=ExtResource("4_qgceg")]
 layout_mode = 2
 
-[node name="CardOption4" parent="Card Choices" instance=ExtResource("4_qgceg")]
+[node name="CardOption4" parent="ScrollContainer/Card Choices" instance=ExtResource("4_qgceg")]
 layout_mode = 2
 
-[node name="CardOption5" parent="Card Choices" instance=ExtResource("4_qgceg")]
+[node name="CardOption5" parent="ScrollContainer/Card Choices" instance=ExtResource("4_qgceg")]
 layout_mode = 2
 
-[node name="Current Deck" type="GridContainer" parent="."]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 241.0
-offset_right = 72.0
-offset_bottom = 281.0
-columns = 5
-
-[node name="CardOption" parent="Current Deck" instance=ExtResource("4_qgceg")]
-layout_mode = 2
-
-[node name="CardOption2" parent="Current Deck" instance=ExtResource("4_qgceg")]
-layout_mode = 2
-
-[node name="CardOption3" parent="Current Deck" instance=ExtResource("4_qgceg")]
-layout_mode = 2
-
-[node name="CardOption4" parent="Current Deck" instance=ExtResource("4_qgceg")]
-layout_mode = 2
-
-[node name="CardOption5" parent="Current Deck" instance=ExtResource("4_qgceg")]
-layout_mode = 2
-
-[connection signal="button_down" from="Confirm" to="." method="on_confirm"]
+[connection signal="pressed" from="Confirm" to="." method="on_confirm"]

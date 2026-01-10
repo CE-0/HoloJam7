@@ -8,7 +8,6 @@ extends Control
 var prepped: bool = false
 
 func _ready() -> void:
-	pass
 	if not prepped and card_num != -1:
 		setup_from_card_num(card_num)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bksmk5evfkfln"]
+[gd_scene load_steps=23 format=3 uid="uid://bksmk5evfkfln"]
 
 [ext_resource type="PackedScene" uid="uid://b2ii1dwbjera2" path="res://source/gui/menus/pause_menu.tscn" id="1_i7gob"]
 [ext_resource type="Script" uid="uid://densox0ndrugk" path="res://source/settings/dev_room_1.gd" id="1_l6tno"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://b0kwtgnhhbws6" path="res://source/scripts/OrderStateMachine.gd" id="6_qu3nr"]
 [ext_resource type="PackedScene" uid="uid://cyh3tuxm0pbkm" path="res://source/gui/menus/card_select_menu.tscn" id="7_dsn44"]
 [ext_resource type="Script" uid="uid://n22j3cv3w83g" path="res://source/scripts/order_generator.gd" id="7_dv8nw"]
+[ext_resource type="PackedScene" uid="uid://8vu4176fg1b6" path="res://source/gui/menus/card_discard_menu.tscn" id="7_rsy5m"]
 [ext_resource type="Script" uid="uid://cxmkb0ao3skbl" path="res://source/scripts/DayStateMachine.gd" id="8_gt04f"]
 [ext_resource type="Texture2D" uid="uid://d0bk1sq0hnac5" path="res://assets/ui/UI_BG.png" id="9_gu6sm"]
 [ext_resource type="Texture2D" uid="uid://bjhjuhahf0lpi" path="res://assets/ui/UI_Bottom.png" id="10_3yupx"]
@@ -19,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://dm76iwe5uaqsx" path="res://source/scenes/customer.tscn" id="12_tsjc1"]
 [ext_resource type="Script" uid="uid://bsiod0rh65nx7" path="res://source/scripts/customer.gd" id="14_eaqo6"]
 [ext_resource type="Texture2D" uid="uid://dxaob4yd5llv2" path="res://assets/cursor_none.png" id="14_mwrjf"]
-[ext_resource type="Script" uid="uid://io071xrea3bq" path="res://source/scripts/mouse_pointer.gd" id="15_0wurm"]
+[ext_resource type="Script" path="res://source/scripts/mouse_pointer.gd" id="15_0wurm"]
 [ext_resource type="PackedScene" uid="uid://0q5fxwpt61fo" path="res://source/scenes/order_plate.tscn" id="20_dsn44"]
 
 [node name="DevRoom1" type="Node"]
@@ -39,6 +40,9 @@ visible = false
 visible = false
 
 [node name="PackViewer" parent="CanvasLayer" instance=ExtResource("6_go7e0")]
+visible = false
+
+[node name="CardDiscardMenu" parent="CanvasLayer" instance=ExtResource("7_rsy5m")]
 visible = false
 
 [node name="CardSelectMenu" parent="CanvasLayer" instance=ExtResource("7_dsn44")]
