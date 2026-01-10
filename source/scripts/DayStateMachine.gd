@@ -62,19 +62,17 @@ func day_order_phase() -> void:
 func day_pass_phase() -> void:
 	print("day successful!")
 	current_state = DayState.PASS
-	current_day = current_day + 1 # this doesn't visually update yet
-	# bring up interface to add / remove cards 
+	current_day = current_day + 1 # this shouldn't visually update until later
 	
-
+	GameManager.game_timer.stop()
 	GameManager.cook.move_offscreen()
 	await SignalBus.customer_done_moving 
 	
-	GameManager.begin_card_selection()
-
-	# fade out?
-	#GameManager.HUD.fade_out(1.0)
+	# bring up interface to add / remove cards 
+	# GameManager.begin_card_selection()
 
 	# remove after card select works
+	GameManager.HUD.fade_out(1.0)
 	await get_tree().create_timer(2.0).timeout
 	day_setup_phase()
 

@@ -54,6 +54,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Card Choices" type="GridContainer" parent="ScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 columns = 5
 

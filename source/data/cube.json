@@ -3,88 +3,114 @@
 		"special": false,
 		"image": "res://icon.svg",
 		"name": "Card 0",
-		"cost": 0,
+		"cost": 0.0,
 		"taste_profile": {
-			"sweet" : 0,
-			"salty": 0,
-			"sour": 0,
-			"umami" : 0
+			"sweet": 0.0,
+			"salty": 0.0,
+			"sour": 0.0,
+			"umami": 0.0
 		}
 	},
 	"1": {
 		"special": true,
 		"image": "res://assets/ingredients/Apple.png",
 		"name": "Apple",
-		"cost": 1,
+		"cost": 1.0,
 		"taste_profile": {
-			"sweet" : 1,
-			"salty": 0,
-			"sour": 0,
-			"umami" : 0
-		}
+			"sweet": 1.0,
+			"salty": 1.0,
+			"sour": 0.0,
+			"umami": 0.0
+		},
+		"bonus_power": [1.0,4.0],
+		"bonus_profile": [
+			0.0
+		]
 	},
 	"2": {
 		"special": true,
 		"image": "res://assets/ingredients/Cheese.png",
 		"name": "Cheese",
-		"cost": 2,
+		"cost": 2.0,
 		"taste_profile": {
-			"sweet" : 0,
-			"salty": 1,
-			"sour": 0,
-			"umami" : 0
-		}
+			"sweet": 0.0,
+			"salty": 1.0,
+			"sour": 0.0,
+			"umami": 0.0
+		},
+		"bonus_power": 4.0,
+		"bonus_profile": [
+			0.0,
+			1.0
+		]
 	},
 	"3": {
-		"special": false,
+		"special": true,
 		"image": "res://assets/ingredients/Lemon.png",
 		"name": "Lemon",
-		"cost": 1,
+		"cost": 1.0,
 		"taste_profile": {
-			"sweet" : 0,
-			"salty": 0,
-			"sour": 1,
-			"umami" : 0
-		}
+			"sweet": 0.0,
+			"salty": 0.0,
+			"sour": 1.0,
+			"umami": 0.0
+		},
+		"bonus_power": [1.0,4.0],
+		"bonus_profile": [
+			0.0,
+			1.0
+		]
 	},
 	"4": {
-		"special": false,
+		"special": true,
 		"image": "res://assets/ingredients/Egg.png",
 		"name": "Egg",
-		"cost": 2,
+		"cost": 2.0,
 		"taste_profile": {
-			"sweet" : 0,
-			"salty": 0,
-			"sour": 0,
-			"umami" : 1
-		}
+			"sweet": 0.0,
+			"salty": 0.0,
+			"sour": 0.0,
+			"umami": 1.0
+		},
+		"bonus_power": 4.0,
+		"bonus_profile": [
+			0.0
+		]
 	},
 	"10": {
 		"special": true,
 		"name": "H ingr one",
 		"image": "res://icon.svg",
-		"cost": 0,
+		"cost": 0.0,
 		"taste_profile": {
-			"sweet" : 0,
-			"salty": 0,
-			"sour": 0,
-			"umami" : 0
+			"sweet": 0.0,
+			"salty": 0.0,
+			"sour": 0.0,
+			"umami": 0.0
 		},
-		"bonus_power": 4,
-		"bonus_profile": [0,1]
+		"bonus_power": 4.0,
+		"bonus_profile": [
+			0.0,
+			1.0
+		]
 	},
 	"11": {
 		"special": true,
 		"name": "H ingr two",
 		"image": "res://icon.svg",
-		"cost": 0,
+		"cost": 0.0,
 		"taste_profile": {
-			"sweet" : 0,
-			"salty": 0,
-			"sour": 0,
-			"umami" : 0
+			"sweet": 0.0,
+			"salty": 0.0,
+			"sour": 0.0,
+			"umami": 0.0
 		},
-		"bonus_power": [1,5],
-		"bonus_profile": [3]
+		"bonus_power": [
+			1.0,
+			5.0
+		],
+		"bonus_profile": [
+			3.0
+		]
 	}
 }

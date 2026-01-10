@@ -40,5 +40,8 @@ func stop(sound: NodePath):
 
 func play_random_tap_sound() -> void:
 	var options: Array[String] = ["Sizzle", "Chop"]
-	options.shuffle()
-	play(options[0])
+	play(options.pick_random())
+
+func play_random_bell_sound() -> void:
+	var options: Array[String] = ["BellDone", "BellDoneMid", "BellDoneShort"]
+	play(options.pick_random())

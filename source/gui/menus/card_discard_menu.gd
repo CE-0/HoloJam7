@@ -7,11 +7,12 @@ var card_option = preload("res://source/gui/card_option.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GameManager.card_discard_menu = self
 	for x in range(0, len(Global.deck)):
 		var card = card_option.instantiate() 
+		deck_grid.add_child(card)
 		card.deck_idx = x 
 		card.card_img.setup_from_card_num(Global.deck[x])
-		deck_grid.add_child(card)
 
 func update_grid(): 
 	var cards = deck_grid.get_child_count() 

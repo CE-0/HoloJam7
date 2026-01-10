@@ -12,4 +12,4 @@ func update_feedback_label(text: String) -> void:
 
 func _on_button_pressed() -> void:
 	SignalBus.serve_pressed.emit()
-	AudioManager.play("BellDone")
+	AudioManager.play_random_bell_sound()

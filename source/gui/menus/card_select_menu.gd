@@ -1,13 +1,14 @@
 class_name CardSelectMenu 
 extends Control 
 
-@onready var new_choices_grid = $"Card Choices"
+@onready var new_choices_grid = %"Card Choices"
 
 var number_selected = 0 
 var new_cards = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GameManager.card_select_menu = self
 	new_cards = new_choices_grid.get_children() 
 
 

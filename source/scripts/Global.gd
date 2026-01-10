@@ -1,6 +1,7 @@
 extends Node 
 
-var default_save = "res://source/data/savedata.json" 
+#var default_save = "res://source/data/savedata.json"
+var default_save = "res://source/data/defaultdata.json"
 var save_path = "user://hcmsavedata.json"
 
 var game_data : Dictionary
@@ -45,11 +46,13 @@ func save_data():
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void: 
-	game_data = load_file()
+	game_data = load_data(default_save) # temp until newgame / continue options are added
+	#game_data = load_file()
 	music_vol = game_data["volume_settings"]["music"] 
 	sfx_vol = game_data["volume_settings"]["sfx"] 
-	deck = game_data["player_data"]["deck"]
-
+	
+	for item in game_data["player_data"]["deck"]: # change json floats to ints
+		deck.append(int(item))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bksmk5evfkfln"]
+[gd_scene load_steps=20 format=3 uid="uid://bksmk5evfkfln"]
 
 [ext_resource type="PackedScene" uid="uid://b2ii1dwbjera2" path="res://source/gui/menus/pause_menu.tscn" id="1_i7gob"]
 [ext_resource type="Script" uid="uid://densox0ndrugk" path="res://source/settings/dev_room_1.gd" id="1_l6tno"]
@@ -16,11 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://d0bk1sq0hnac5" path="res://assets/ui/UI_BG.png" id="9_gu6sm"]
 [ext_resource type="Texture2D" uid="uid://bjhjuhahf0lpi" path="res://assets/ui/UI_Bottom.png" id="10_3yupx"]
 [ext_resource type="Texture2D" uid="uid://b41bwcwuvkflo" path="res://assets/characters/Haachama.png" id="11_2em5d"]
-[ext_resource type="Texture2D" uid="uid://evrdbfaus6cy" path="res://assets/Mock_2.png" id="11_3yupx"]
 [ext_resource type="PackedScene" uid="uid://dm76iwe5uaqsx" path="res://source/scenes/customer.tscn" id="12_tsjc1"]
 [ext_resource type="Script" uid="uid://bsiod0rh65nx7" path="res://source/scripts/customer.gd" id="14_eaqo6"]
-[ext_resource type="Texture2D" uid="uid://dxaob4yd5llv2" path="res://assets/cursor_none.png" id="14_mwrjf"]
-[ext_resource type="Script" path="res://source/scripts/mouse_pointer.gd" id="15_0wurm"]
 [ext_resource type="PackedScene" uid="uid://0q5fxwpt61fo" path="res://source/scenes/order_plate.tscn" id="20_dsn44"]
 
 [node name="DevRoom1" type="Node"]
@@ -94,20 +91,3 @@ exit_dir = -1.0
 [node name="UiBottom" type="Sprite2D" parent="."]
 texture = ExtResource("10_3yupx")
 centered = false
-
-[node name="Mock2" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("11_3yupx")
-centered = false
-
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
-layer = 2
-visible = false
-
-[node name="CursorNone" type="Sprite2D" parent="CanvasLayer2"]
-modulate = Color(0.6862745, 0.42352942, 0.29803923, 1)
-top_level = true
-z_index = 4096
-texture = ExtResource("14_mwrjf")
-centered = false
-script = ExtResource("15_0wurm")

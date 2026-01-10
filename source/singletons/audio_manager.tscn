@@ -1,10 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://c10aen1wj72w4"]
+[gd_scene load_steps=18 format=3 uid="uid://c10aen1wj72w4"]
 
 [ext_resource type="Script" uid="uid://b2nfjsoh8rop0" path="res://source/singletons/audio_manager.gd" id="1_b15hf"]
 [ext_resource type="AudioStream" uid="uid://erhdltfpxi2r" path="res://assets/sfx/blip.wav" id="2_iuqny"]
 [ext_resource type="AudioStream" uid="uid://2ip82mpjidfu" path="res://assets/sfx/bell_done.wav" id="3_dswmj"]
 [ext_resource type="AudioStream" uid="uid://dmf5e473hd8g8" path="res://assets/sfx/card_discard.wav" id="3_eapec"]
+[ext_resource type="AudioStream" uid="uid://kcp6vg0eg0ey" path="res://assets/sfx/bell_done_mid.wav" id="3_ock7u"]
 [ext_resource type="AudioStream" uid="uid://cl3ief25lj6ou" path="res://assets/sfx/vegetable_chop.wav" id="4_2f4op"]
+[ext_resource type="AudioStream" uid="uid://bpes3au7xagp8" path="res://assets/sfx/bell_done_short.wav" id="4_cmsfw"]
 [ext_resource type="AudioStream" uid="uid://btfmkti7228xa" path="res://assets/sfx/card_select_a.wav" id="4_ynbmr"]
 [ext_resource type="AudioStream" uid="uid://isxrstb3vdu2" path="res://assets/sfx/card_select_b.wav" id="5_ock7u"]
 [ext_resource type="AudioStream" uid="uid://dr13f0mtq8yy5" path="res://assets/sfx/card_shuffle.wav" id="6_cmsfw"]
@@ -21,6 +23,16 @@ script = ExtResource("1_b15hf")
 
 [node name="BellDone" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_dswmj")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="BellDoneMid" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ock7u")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="BellDoneShort" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_cmsfw")
 volume_db = -10.0
 bus = &"SFX"
 

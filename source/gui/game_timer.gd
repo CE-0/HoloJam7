@@ -22,6 +22,9 @@ func setup(new_time_s: float) -> void:
 func start() -> void:
 	running = true
 
+func stop() -> void:
+	running = false
+
 func decrement_time(value_s: float) -> void:
 	time_left_s = time_left_s - value_s
 	time_left_s = max(time_left_s, 0.0)
