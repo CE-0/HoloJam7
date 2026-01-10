@@ -15,15 +15,16 @@ func _ready() -> void:
 		card.card_img.setup_from_card_num(Global.deck[x])
 
 func update_grid(): 
-	var cards = deck_grid.get_child_count() 
-	if (cards >= len(Global.deck)):
-		return
-	else:
-		for x in range(cards, len(Global.deck)):
-			var card = card_option.instantiate() 
-			card.deck_idx = x 
-			card.card_img.setup_from_card_num(Global.deck[x])
-			deck_grid.add_child(card) 
+	clear_children(deck_grid) 
+	for x in range(0, len(Global.deck)):
+		var card = card_option.instantiate() 
+		deck_grid.add_child(card)
+		card.deck_idx = x 
+		card.card_img.setup_from_card_num(Global.deck[x])
+
+func clear_children(node):
+	for c in node.get_children():
+		c.queue_free()
 
 func remove_selection():
 	for x in range(0, deck_grid.get_child_count()):
