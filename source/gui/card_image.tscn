@@ -1,25 +1,37 @@
-[gd_scene load_steps=8 format=3 uid="uid://4ylo0t6wf2a0"]
+[gd_scene load_steps=12 format=3 uid="uid://4ylo0t6wf2a0"]
 
 [ext_resource type="Script" uid="uid://8ok8vt6yi2y0" path="res://source/gui/card_image.gd" id="1_8nwbb"]
 [ext_resource type="Texture2D" uid="uid://2kst3ugk7mym" path="res://assets/cards/icon_blank.png" id="2_u8lvd"]
+[ext_resource type="FontFile" uid="uid://b00a6crxmm10e" path="res://assets/fonts/Pix32.ttf" id="3_34yk4"]
+[ext_resource type="Texture2D" uid="uid://dcvsh55y52s8v" path="res://assets/cards/Generic card.png" id="4_a1oiy"]
+[ext_resource type="Texture2D" uid="uid://c6vsdgvxosmja" path="res://assets/cards/Haachama card.png" id="5_63v6m"]
+[ext_resource type="FontFile" uid="uid://bb7mjr65gyr7i" path="res://assets/fonts/04B_30__.TTF" id="6_63v6m"]
+[ext_resource type="Texture2D" uid="uid://chc0nyffs1ig1" path="res://assets/ingredients/Apple.png" id="6_jvt3b"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_34yk4"]
-font_size = 24
-
-[sub_resource type="LabelSettings" id="LabelSettings_jh6km"]
-font_size = 24
-
-[sub_resource type="LabelSettings" id="LabelSettings_sqw48"]
-font_size = 24
-
-[sub_resource type="LabelSettings" id="LabelSettings_a1oiy"]
-font_size = 24
+font = ExtResource("6_63v6m")
+font_size = 42
+outline_size = 14
+outline_color = Color(0.8627451, 0.4392157, 0.27058825, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_63v6m"]
+font = ExtResource("3_34yk4")
+font_size = 37
+outline_size = 12
+outline_color = Color(0.8627451, 0.4392157, 0.27058825, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_u8lvd"]
 font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_a1oiy"]
+font = ExtResource("3_34yk4")
+font_size = 37
+outline_size = 8
+outline_color = Color(0.8627451, 0.4392157, 0.27058825, 1)
 
 [node name="CardImage" type="Control"]
-custom_minimum_size = Vector2(128, 232)
+custom_minimum_size = Vector2(138, 232)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,10 +40,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8nwbb")
 card_num = 4
-metadata/_edit_vertical_guides_ = [128.0]
-metadata/_edit_horizontal_guides_ = [206.0, 232.0]
+metadata/_edit_vertical_guides_ = [138.0]
+metadata/_edit_horizontal_guides_ = [204.0, 232.0]
 
 [node name="card template" type="TextureRect" parent="."]
+visible = false
 modulate = Color(0.49747366, 0.49747366, 0.49747366, 1)
 layout_mode = 0
 offset_right = 128.0
@@ -39,94 +52,93 @@ offset_bottom = 128.0
 scale = Vector2(1, 1.6)
 texture = ExtResource("2_u8lvd")
 
+[node name="sprites" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="image_generic" type="TextureRect" parent="sprites"]
+layout_mode = 0
+scale = Vector2(0.333, 0.333)
+texture = ExtResource("4_a1oiy")
+
+[node name="image_special" type="TextureRect" parent="sprites"]
+layout_mode = 0
+scale = Vector2(0.333, 0.333)
+texture = ExtResource("5_63v6m")
+
+[node name="image_food" type="TextureRect" parent="sprites"]
+layout_mode = 0
+offset_left = 16.999998
+offset_top = 2.9999962
+offset_right = 319.0
+offset_bottom = 285.0
+scale = Vector2(0.365, 0.365)
+texture = ExtResource("6_jvt3b")
+
 [node name="Cost" type="Label" parent="."]
 layout_mode = 0
-offset_left = 76.0
-offset_top = 12.0
-offset_right = 116.0
-offset_bottom = 46.0
+offset_left = 96.0
+offset_top = 60.0
+offset_right = 154.0
+offset_bottom = 114.0
+scale = Vector2(0.575, 0.575)
 text = "0"
 label_settings = SubResource("LabelSettings_34yk4")
 horizontal_alignment = 2
-
-[node name="Control" type="Control" parent="."]
-anchors_preset = 0
-offset_left = 64.0
-offset_top = 152.0
-offset_right = 104.0
-offset_bottom = 192.0
-
-[node name="StatA" type="Label" parent="Control"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -90.0
-offset_top = -90.0
-offset_right = -40.0
-offset_bottom = -40.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "0"
-label_settings = SubResource("LabelSettings_jh6km")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="StatB" type="Label" parent="Control"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -90.0
-offset_right = 50.0
-offset_bottom = -40.0
-grow_vertical = 0
-text = "0"
-label_settings = SubResource("LabelSettings_sqw48")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="StatC" type="Label" parent="Control"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -90.0
-offset_right = -40.0
-offset_bottom = 50.0
-grow_horizontal = 0
-text = "0"
-label_settings = SubResource("LabelSettings_a1oiy")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="StatD" type="Label" parent="Control"]
-layout_mode = 1
-offset_right = 50.0
-offset_bottom = 50.0
-text = "0"
-label_settings = SubResource("LabelSettings_63v6m")
-horizontal_alignment = 1
-vertical_alignment = 1
+vertical_alignment = 2
 
 [node name="NameLabel" type="Label" parent="."]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0046875
+anchor_top = -0.0013888889
+anchor_right = 0.0046875
+anchor_bottom = 0.0125
 offset_left = 8.0
 offset_top = 12.0
 offset_right = 119.0
 offset_bottom = 40.0
+scale = Vector2(0.6, 0.6)
 text = "Name"
+label_settings = SubResource("LabelSettings_63v6m")
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Count" type="Label" parent="."]
 layout_mode = 0
 offset_left = 26.0
-offset_top = 205.0
-offset_right = 100.0
-offset_bottom = 228.0
+offset_top = 196.0
+offset_right = 146.0
+offset_bottom = 239.0
 text = "x0"
+label_settings = SubResource("LabelSettings_u8lvd")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 137.0
+offset_bottom = 203.0
+
+[node name="Verbose" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -95.0
+offset_top = -162.00002
+offset_right = 93.0
+offset_bottom = 58.758636
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.58, 0.58)
+pivot_offset = Vector2(94, 38)
+text = "sweet +2
+sour +2
++4 to ?"
+label_settings = SubResource("LabelSettings_a1oiy")
+horizontal_alignment = 1
+vertical_alignment = 2

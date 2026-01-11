@@ -52,10 +52,12 @@ position = Vector2(1158, 978)
 [node name="DrawPile" parent="." instance=ExtResource("4_l6tno")]
 z_index = 5
 position = Vector2(562, 957)
+description = "Draw Pile"
 
 [node name="DiscardPile" parent="." instance=ExtResource("4_l6tno")]
 z_index = 5
 position = Vector2(1789, 957)
+description = "Discard Pile"
 
 [node name="OrderPlate" parent="." instance=ExtResource("20_dsn44")]
 z_index = 5

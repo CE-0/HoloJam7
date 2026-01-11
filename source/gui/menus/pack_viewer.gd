@@ -11,12 +11,14 @@ extends Control
 # View the daily rewarded cards, and select a subset to add to the main deck
 # View the main deck, and remove a subset of cards permanently
 
+# NOTE: Design the layout of this with size set to 1920,1080
+# Then change it to 1280,720 for export
+
 @onready var image_scene: Resource = preload("res://source/gui/card_image.tscn")
 @onready var grid: GridContainer = %CardGrid
 
 func _ready() -> void:
 	self.hide()
-	# GameManager.pack_viewer = self
 	SignalBus.view_pack.connect(_on_view_pack)
 
 func clear_grid() -> void:
@@ -24,10 +26,13 @@ func clear_grid() -> void:
 		grid.remove_child(child)
 		child.queue_free()
 
-func _on_view_pack(cards: Array[Card]) -> void:
+func _on_view_pack(description: String, cards: Array[Card]) -> void:
 	# TODO: add special note for empty pack
 	clear_grid()
 
+	%Description.text = description
+	%EmptyLabel.visible = (cards.size() == 0)
+	
 	# First count how many of each card is in the pile
 	var count_dict = {}
 	for card in cards:
@@ -48,8 +53,8 @@ func _on_view_pack(cards: Array[Card]) -> void:
 	# Sort then add to grid
 	#images.sort_custom(sort_by_num)
 	images.sort_custom(func(a,b): return a.card_num < b.card_num)
-	for item in images:
-		grid.add_child(item)
+	for image in images:
+		grid.add_child(image)
 	self.show()
 
 func _on_close_button_pressed() -> void:

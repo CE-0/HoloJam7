@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://cecqfhp7ci7rn"]
+[gd_scene load_steps=11 format=3 uid="uid://cecqfhp7ci7rn"]
 
 [ext_resource type="Script" uid="uid://cb15b8qpxdf6y" path="res://source/scripts/card.gd" id="1_vbr0r"]
-[ext_resource type="Texture2D" uid="uid://2kst3ugk7mym" path="res://assets/cards/icon_blank.png" id="2_onr8g"]
 [ext_resource type="Texture2D" uid="uid://dcvsh55y52s8v" path="res://assets/cards/Generic card.png" id="3_qulsp"]
 [ext_resource type="Texture2D" uid="uid://c6vsdgvxosmja" path="res://assets/cards/Haachama card.png" id="4_cln5f"]
 [ext_resource type="Texture2D" uid="uid://chc0nyffs1ig1" path="res://assets/ingredients/Apple.png" id="5_t0pk3"]
@@ -35,12 +34,6 @@ script = ExtResource("1_vbr0r")
 card_num = 1
 
 [node name="sprites" type="Node2D" parent="."]
-
-[node name="card template" type="Sprite2D" parent="sprites"]
-visible = false
-modulate = Color(0.49747366, 0.49747366, 0.49747366, 1)
-scale = Vector2(1, 1.6)
-texture = ExtResource("2_onr8g")
 
 [node name="image_generic" type="Sprite2D" parent="sprites"]
 unique_name_in_owner = true

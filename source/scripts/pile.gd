@@ -4,6 +4,8 @@ extends Node2D
 # Generic class for a pile, a group of cards
 # Used for draw pile and discard pile
 
+@export var description: String = ""
+
 # Index 0 is bottom of pile, index size()-1 is top of pile
 var cards: Array[Card] = []
 
@@ -116,4 +118,4 @@ func update_count() -> void:
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	# View the piles in the pack_viewer
 	if Input.is_action_just_pressed("view_pile"):
-		SignalBus.view_pack.emit(cards)
+		SignalBus.view_pack.emit(description, cards)
