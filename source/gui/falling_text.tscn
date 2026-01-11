@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://yts4bd7kdmj7"]
+
+[ext_resource type="FontFile" uid="uid://b00a6crxmm10e" path="res://assets/fonts/Pix32.ttf" id="1_0ji1q"]
+[ext_resource type="Script" uid="uid://dqo8u5poxof1j" path="res://source/gui/falling_text.gd" id="1_ecv3k"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_t7oqk"]
+font = ExtResource("1_0ji1q")
+font_size = 107
+outline_size = 19
+outline_color = Color(0.87058824, 0.38039216, 0.4117647, 1)
+
+[node name="FallingText" type="Label"]
+offset_right = 302.65488
+offset_bottom = 108.0
+scale = Vector2(0.565, 0.565)
+text = "-0:00"
+label_settings = SubResource("LabelSettings_t7oqk")
+horizontal_alignment = 2
+script = ExtResource("1_ecv3k")

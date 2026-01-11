@@ -1,6 +1,8 @@
 class_name GameTimer
 extends Control
 
+var falling_text_scene = preload("res://source/gui/falling_text.tscn")
+
 var time_left_s: float = 0.0
 var running: bool = false
 @onready var label: Label = $Label
@@ -51,4 +53,9 @@ func _on_time_penalty(value_s: float) -> void:
 		return
 
 	# play some visual feedback
+	var next_text: FallingText = falling_text_scene.instantiate()
+	add_child(next_text)
+	next_text.position = Vector2(300, 65)
+	var t = "-0:%02d" % round(value_s)
+	next_text.start(t, 1.0)
 	decrement_time(value_s)
