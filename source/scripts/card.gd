@@ -73,6 +73,11 @@ func setup_from_card_num(num: int) -> void:
 func get_taste_values() -> Dictionary:
 	var last = tasteDict.duplicate_deep()
 
+	# Normal cards are done
+	if not special:
+		return last
+
+	# Resolve haachama values
 	# read or rng the power
 	var power = 0
 	if bonus_power is Array:

@@ -29,7 +29,6 @@ script = ExtResource("1_l6tno")
 [node name="GameUI" parent="CanvasLayer" instance=ExtResource("2_ic80d")]
 
 [node name="DevHud" parent="CanvasLayer" instance=ExtResource("3_yeh31")]
-visible = false
 mouse_filter = 1
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("1_i7gob")]

@@ -20,7 +20,7 @@ enum DayState {
 }
 var current_state: DayState = DayState.SETUP
 
-var time_in_day: int = 60
+var time_in_day: int = 120
 var total_orders: int # theres redundant copies of this var, one in each machine
 var current_day: int = 1
 

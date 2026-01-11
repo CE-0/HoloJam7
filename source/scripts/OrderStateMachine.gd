@@ -62,6 +62,7 @@ func order_serve_phase() -> void:
 	current_state = OrderState.SERVE
 
 	if current_order_num == GameManager.total_orders:
+		GameManager.game_timer.stop()
 		AudioManager.play("BellDone")
 		await get_tree().create_timer(0.1).timeout
 		AudioManager.play("BellDone")

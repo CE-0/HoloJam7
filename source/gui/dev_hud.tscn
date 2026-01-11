@@ -12,6 +12,7 @@ grow_vertical = 2
 script = ExtResource("1_8yjoi")
 
 [node name="Button" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 100.0
 offset_top = 947.0
@@ -21,6 +22,7 @@ text = "Serve / Start"
 
 [node name="DevFeedback" type="Label" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = 457.0
 offset_right = 1909.0

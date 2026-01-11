@@ -171,7 +171,7 @@ func _on_card_tapped(card: Card) -> void:
 	add_values_to_dish(card.get_taste_values())
 	hand.take_card(card)
 	discard_pile.place_card(card)
-	draw_card_to_hand()
+	# draw_card_to_hand()
 
 func _on_pile_empty(pile: Pile) -> void:
 	if pile == draw_pile:

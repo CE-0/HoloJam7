@@ -8,7 +8,7 @@
 [ext_resource type="FontFile" uid="uid://bb7mjr65gyr7i" path="res://assets/fonts/04B_30__.TTF" id="6_ha05c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onr8g"]
-size = Vector2(128, 206)
+size = Vector2(137, 206)
 
 [sub_resource type="LabelSettings" id="LabelSettings_fd2dk"]
 font = ExtResource("5_ximjd")
@@ -52,7 +52,7 @@ scale = Vector2(0.365, 0.365)
 texture = ExtResource("5_t0pk3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
+position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_onr8g")
 
 [node name="NameLabel" type="Label" parent="."]
