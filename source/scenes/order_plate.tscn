@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://0q5fxwpt61fo"]
+[gd_scene load_steps=6 format=3 uid="uid://0q5fxwpt61fo"]
 
 [ext_resource type="Script" uid="uid://cn7vlb6vkuaso" path="res://source/scripts/order_plate.gd" id="1_8co2d"]
+[ext_resource type="Texture2D" uid="uid://cswb0vcsixnr1" path="res://assets/food/Plate.png" id="2_e64pm"]
 [ext_resource type="Texture2D" uid="uid://c3ilihcn5fbkp" path="res://assets/food/Burger.png" id="2_miqg5"]
 
 [sub_resource type="Gradient" id="Gradient_85gtm"]
@@ -18,7 +19,13 @@ fill_from = Vector2(0.5, 0.5)
 [node name="OrderPlate" type="Node2D"]
 script = ExtResource("1_8co2d")
 
+[node name="Plate" type="Sprite2D" parent="."]
+position = Vector2(0, -24)
+scale = Vector2(0.3526011, 0.35260117)
+texture = ExtResource("2_e64pm")
+
 [node name="TempPlate" type="TextureRect" parent="."]
+visible = false
 offset_left = -146.0
 offset_top = -85.5
 offset_right = 144.0
@@ -29,6 +36,3 @@ texture = SubResource("GradientTexture2D_e64pm")
 unique_name_in_owner = true
 position = Vector2(0, -54.5)
 texture = ExtResource("2_miqg5")
-
-[node name="Plate" type="Sprite2D" parent="."]
-visible = false

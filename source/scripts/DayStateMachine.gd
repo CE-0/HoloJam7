@@ -42,6 +42,7 @@ func day_setup_phase() -> void:
 	total_orders = 3
 	GameManager.set_total_order_num(total_orders)
 	GameManager.HUD.update_current_order_num(0)
+	GameManager.HUD.set_bell_text("Start")
 
 	GameManager.order_gen.set_difficulty(current_day+2)
 
@@ -59,6 +60,7 @@ func day_setup_phase() -> void:
 func day_order_phase() -> void:
 	current_state = DayState.ORDER
 	GameManager.game_timer.start()
+	GameManager.HUD.set_bell_text("Serve")
 	GameManager.order_machine.order_begin_phase() # a little direct
 
 func day_pass_phase() -> void:

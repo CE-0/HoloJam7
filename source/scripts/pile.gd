@@ -5,6 +5,7 @@ extends Node2D
 # Used for draw pile and discard pile
 
 @export var description: String = ""
+@export var card_image: CompressedTexture2D
 
 # Index 0 is bottom of pile, index size()-1 is top of pile
 var cards: Array[Card] = []
@@ -14,6 +15,12 @@ var cards: Array[Card] = []
 func _ready() -> void:
 	pass
 	update_count()
+	set_card_backs()
+
+func set_card_backs() -> void:
+	$CardBack.texture = card_image
+	$CardBack2.texture = card_image
+	$CardBack3.texture = card_image
 
 func size() -> int:
 	return cards.size()

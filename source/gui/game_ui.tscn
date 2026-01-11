@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://blma87368m17f"]
+[gd_scene load_steps=19 format=3 uid="uid://blma87368m17f"]
 
 [ext_resource type="Script" uid="uid://1grwospwaa7k" path="res://source/gui/game_ui.gd" id="1_0cyqu"]
 [ext_resource type="Texture2D" uid="uid://dwrbg425et6eg" path="res://assets/ui/UI_Sidebar.png" id="3_1j0tq"]
@@ -9,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://bb7mjr65gyr7i" path="res://assets/fonts/04B_30__.TTF" id="7_v2kgr"]
 [ext_resource type="FontFile" uid="uid://b00a6crxmm10e" path="res://assets/fonts/Pix32.ttf" id="8_72gkx"]
 [ext_resource type="Texture2D" uid="uid://bvmx30geg4a86" path="res://assets/ui/UI_Clock_cropped.png" id="9_72gkx"]
+[ext_resource type="Texture2D" uid="uid://b6x8uy4y07ose" path="res://assets/title screen/Button.png" id="10_jcs87"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cnw61"]
 font = ExtResource("7_v2kgr")
@@ -53,6 +54,12 @@ font = ExtResource("7_v2kgr")
 font_size = 60
 outline_size = 14
 outline_color = Color(0.8627451, 0.4392157, 0.27058825, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8sq55"]
+font = ExtResource("7_v2kgr")
+font_size = 37
+font_color = Color(0.87058824, 0.38039216, 0.4117647, 1)
+outline_size = 15
 
 [node name="GameUI" type="Control"]
 layout_mode = 3
@@ -290,6 +297,30 @@ label_settings = SubResource("LabelSettings_gmocp")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BellButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 944.0
+offset_right = 346.0
+offset_bottom = 1023.0
+texture_normal = ExtResource("10_jcs87")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="BellLabel" type="Label" parent="BellButton"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SERVE"
+label_settings = SubResource("LabelSettings_8sq55")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="FadeRect" type="ColorRect" parent="."]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
@@ -299,3 +330,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+
+[connection signal="pressed" from="BellButton" to="." method="_on_bell_button_pressed"]

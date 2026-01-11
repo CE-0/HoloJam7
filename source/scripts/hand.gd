@@ -4,7 +4,7 @@ extends Node2D
 # Selection of cards available for use by the player
 # Arranges the cards for easy viewing and selection by player
 
-const HAND_WIDTH: float = 750
+const HAND_WIDTH: float = 1000
 
 var held_cards: Array[Card] = []
 var focused_card: Card = null
@@ -14,6 +14,7 @@ var mutex: Mutex = Mutex.new()
 
 func _ready() -> void:
 	pass
+	$Sprite2D.visible = false
 
 func _process(_delta: float) -> void:
 	pass

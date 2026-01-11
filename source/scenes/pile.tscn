@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjbwls52odjlx"]
+[gd_scene load_steps=7 format=3 uid="uid://cjbwls52odjlx"]
 
 [ext_resource type="Script" uid="uid://bbcoiyjkx2cx8" path="res://source/scripts/pile.gd" id="1_fxp1r"]
 [ext_resource type="Texture2D" uid="uid://kagyq5irug3t" path="res://icon.svg" id="2_5tyg0"]
+[ext_resource type="Texture2D" uid="uid://bj7te0tpnvpig" path="res://assets/cards/Deck.png" id="2_g3ixb"]
 [ext_resource type="Texture2D" uid="uid://b6wjwmlv318qd" path="res://assets/cards/icon_dotted.png" id="3_ek6df"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5tyg0"]
@@ -9,10 +10,11 @@ font_size = 34
 font_color = Color(0.12941177, 0.14509805, 0.19607843, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ek6df"]
-size = Vector2(128, 204)
+size = Vector2(135, 204)
 
 [node name="Pile" type="Node2D"]
 script = ExtResource("1_fxp1r")
+card_image = ExtResource("2_g3ixb")
 
 [node name="Label" type="Label" parent="."]
 offset_left = 65.0
@@ -27,20 +29,27 @@ scale = Vector2(0.90625, 1.4443359)
 texture = ExtResource("3_ek6df")
 
 [node name="CardBack3" type="Sprite2D" parent="."]
-scale = Vector2(1, 1.6)
-texture = ExtResource("2_5tyg0")
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("2_g3ixb")
 
 [node name="CardBack2" type="Sprite2D" parent="."]
-scale = Vector2(1, 1.6)
-texture = ExtResource("2_5tyg0")
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("2_g3ixb")
 
 [node name="CardBack" type="Sprite2D" parent="."]
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("2_g3ixb")
+
+[node name="CardBack4" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 0, 0, 1)
 scale = Vector2(1, 1.6)
 texture = ExtResource("2_5tyg0")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_ek6df")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

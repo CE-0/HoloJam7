@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dm76iwe5uaqsx"]
 
 [ext_resource type="Script" uid="uid://bsiod0rh65nx7" path="res://source/scripts/customer.gd" id="1_5a381"]
-[ext_resource type="Texture2D" uid="uid://bvyk3em6plh3f" path="res://assets/characters/Fan1.png" id="2_qpcdv"]
+[ext_resource type="Texture2D" uid="uid://dbp58fgfuwy1j" path="res://assets/characters/Fan2.png" id="2_qvlsa"]
 [ext_resource type="Texture2D" uid="uid://c6uuo1l1yuln1" path="res://assets/characters/SpeechBubble.png" id="3_2tjmj"]
 [ext_resource type="Texture2D" uid="uid://c3ilihcn5fbkp" path="res://assets/food/Burger.png" id="4_qvlsa"]
 
@@ -10,7 +10,7 @@ script = ExtResource("1_5a381")
 
 [node name="Character" type="Sprite2D" parent="."]
 scale = Vector2(0.875, 0.875)
-texture = ExtResource("2_qpcdv")
+texture = ExtResource("2_qvlsa")
 
 [node name="Bubble" type="Sprite2D" parent="."]
 position = Vector2(-328, -261)

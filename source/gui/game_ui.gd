@@ -76,7 +76,10 @@ func update_current_order_num(value: int) -> void:
 
 func set_current_day(value: int) -> void:
 	day_num.text = str("Day ", value)
-	
+
+func set_bell_text(value: String) -> void:
+	%BellLabel.text = value
+
 func fade_in(duration: float) -> void:
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(fade_rect, "modulate", Color.TRANSPARENT, duration)
@@ -84,3 +87,7 @@ func fade_in(duration: float) -> void:
 func fade_out(duration: float) -> void:
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(fade_rect, "modulate", Color.WHITE, duration)
+
+func _on_bell_button_pressed() -> void:
+	SignalBus.serve_pressed.emit()
+	AudioManager.play_random_bell_sound()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bksmk5evfkfln"]
+[gd_scene load_steps=21 format=3 uid="uid://bksmk5evfkfln"]
 
 [ext_resource type="PackedScene" uid="uid://b2ii1dwbjera2" path="res://source/gui/menus/pause_menu.tscn" id="1_i7gob"]
 [ext_resource type="Script" uid="uid://densox0ndrugk" path="res://source/settings/dev_room_1.gd" id="1_l6tno"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://d0bk1sq0hnac5" path="res://assets/ui/UI_BG.png" id="9_gu6sm"]
 [ext_resource type="Texture2D" uid="uid://bjhjuhahf0lpi" path="res://assets/ui/UI_Bottom.png" id="10_3yupx"]
 [ext_resource type="Texture2D" uid="uid://b41bwcwuvkflo" path="res://assets/characters/Haachama.png" id="11_2em5d"]
+[ext_resource type="Texture2D" uid="uid://bkv1d5l3420dy" path="res://assets/cards/Discard.png" id="12_rsy5m"]
 [ext_resource type="PackedScene" uid="uid://dm76iwe5uaqsx" path="res://source/scenes/customer.tscn" id="12_tsjc1"]
 [ext_resource type="Script" uid="uid://bsiod0rh65nx7" path="res://source/scripts/customer.gd" id="14_eaqo6"]
 [ext_resource type="PackedScene" uid="uid://0q5fxwpt61fo" path="res://source/scenes/order_plate.tscn" id="20_dsn44"]
@@ -28,6 +29,7 @@ script = ExtResource("1_l6tno")
 [node name="GameUI" parent="CanvasLayer" instance=ExtResource("2_ic80d")]
 
 [node name="DevHud" parent="CanvasLayer" instance=ExtResource("3_yeh31")]
+visible = false
 mouse_filter = 1
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("1_i7gob")]
@@ -52,13 +54,16 @@ position = Vector2(1158, 978)
 
 [node name="DrawPile" parent="." instance=ExtResource("4_l6tno")]
 z_index = 5
-position = Vector2(562, 957)
+position = Vector2(562, 944)
+scale = Vector2(1.1, 1.1)
 description = "Draw Pile"
 
 [node name="DiscardPile" parent="." instance=ExtResource("4_l6tno")]
 z_index = 5
-position = Vector2(1789, 957)
+position = Vector2(1789, 944)
+scale = Vector2(1.1, 1.1)
 description = "Discard Pile"
+card_image = ExtResource("12_rsy5m")
 
 [node name="OrderPlate" parent="." instance=ExtResource("20_dsn44")]
 z_index = 5
