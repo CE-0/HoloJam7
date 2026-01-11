@@ -1,7 +1,7 @@
 class_name TitleScreen
 extends Control
 
-@onready var newgame_B: Button = %New
+@onready var newgame_B: TextureButton = %New
 @onready var blackscreen: ColorRect = $BlackScreen
 
 func _ready() -> void:

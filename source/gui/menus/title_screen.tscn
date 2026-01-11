@@ -1,19 +1,52 @@
-[gd_scene load_steps=4 format=3 uid="uid://dafnp6dsfskwx"]
+[gd_scene load_steps=9 format=3 uid="uid://dafnp6dsfskwx"]
 
 [ext_resource type="Script" uid="uid://bh7rh4r16vsmt" path="res://source/gui/menus/title_screen.gd" id="1_rv1hn"]
-[ext_resource type="Texture2D" uid="uid://kagyq5irug3t" path="res://icon.svg" id="2_5hovt"]
+[ext_resource type="Texture2D" uid="uid://bvqhr785mj4g8" path="res://assets/title screen/BG.png" id="2_vjx1d"]
+[ext_resource type="Texture2D" uid="uid://8tdn45lsgv4w" path="res://assets/title screen/Haachama.png" id="3_vjx1d"]
+[ext_resource type="Texture2D" uid="uid://b7vlvsqlhu7t" path="res://assets/title screen/Buttons.png" id="4_i1i7k"]
+[ext_resource type="Texture2D" uid="uid://b6x8uy4y07ose" path="res://assets/title screen/Button.png" id="5_w3y3w"]
+[ext_resource type="FontFile" uid="uid://bb7mjr65gyr7i" path="res://assets/fonts/04B_30__.TTF" id="6_v25cr"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_kmt24"]
-font_size = 72
+[sub_resource type="LabelSettings" id="LabelSettings_6x4yg"]
+font = ExtResource("6_v25cr")
+font_size = 136
+font_color = Color(0.87058824, 0.38039216, 0.4117647, 1)
+outline_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_dcpt1"]
+font = ExtResource("6_v25cr")
+font_size = 76
+font_color = Color(0.87058824, 0.38039216, 0.4117647, 1)
+outline_size = 10
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_right = 1.5000001
+anchor_bottom = 1.5000001
+offset_right = -640.0001
+offset_bottom = -360.00012
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rv1hn")
+
+[node name="Bg" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_vjx1d")
+
+[node name="BgHaachama" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("3_vjx1d")
+
+[node name="BgButtons" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("4_i1i7k")
 
 [node name="VersionLabel" type="Label" parent="."]
 layout_mode = 1
@@ -37,7 +70,7 @@ offset_left = 85.0
 offset_right = -85.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 100
+theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 80
 theme_override_constants/margin_right = 100
 
@@ -49,24 +82,38 @@ layout_mode = 2
 
 [node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/CenterContainer"]
 layout_mode = 2
-text = "The Title of the Game"
-label_settings = SubResource("LabelSettings_kmt24")
+text = "GAME NAME"
+label_settings = SubResource("LabelSettings_6x4yg")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="Buttons" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 35
+theme_override_constants/separation = 86
 
 [node name="VSpacer" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer/Buttons"]
+custom_minimum_size = Vector2(0, -10.82)
 layout_mode = 2
 
-[node name="New" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Buttons"]
+[node name="New" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer/Buttons"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 44
-text = "New Game"
+texture_normal = ExtResource("5_w3y3w")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Buttons/New"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "START"
+label_settings = SubResource("LabelSettings_dcpt1")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Continue" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Buttons"]
 unique_name_in_owner = true
@@ -77,40 +124,56 @@ text = "Continue"
 
 [node name="How" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Buttons"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 44
 text = "How to Play"
 
-[node name="Options" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Buttons"]
+[node name="Options" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer/Buttons"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 44
-text = "Options"
+texture_normal = ExtResource("5_w3y3w")
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Buttons/Options"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "OPTIONS"
+label_settings = SubResource("LabelSettings_dcpt1")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Credits" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Buttons"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 44
 text = "Credits"
 
-[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Buttons"]
+[node name="Quit" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer/Buttons"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 44
-text = "Quit
-"
+texture_normal = ExtResource("5_w3y3w")
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Buttons/Quit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "QUIT"
+label_settings = SubResource("LabelSettings_dcpt1")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HSpacer" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/CenterContainer"]
-layout_mode = 2
-texture = ExtResource("2_5hovt")
 
 [node name="BlackScreen" type="ColorRect" parent="."]
 visible = false
