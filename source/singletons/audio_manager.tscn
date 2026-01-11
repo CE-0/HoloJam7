@@ -74,12 +74,15 @@ volume_db = -15.0
 
 [node name="UIHoverA" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_6bjuc")
+volume_db = -5.0
 
 [node name="UIHoverB" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_2ymn8")
+volume_db = -5.0
 
 [node name="UIHoverC" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_a5uqk")
+volume_db = -5.0
 
 [node name="UISelectA" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("15_acctt")

@@ -57,7 +57,8 @@ func on_confirm():
 	if (num > MAX_SELECT_COUNT):
 		print("Choose only three cards, please")
 		return 
-	else: 
+	else:
+		AudioManager.play("UISelectA")
 		for p in picks:
 			Global.deck.push_back(p.card_img.card_num) 
 			Global.save_data()

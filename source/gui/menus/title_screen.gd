@@ -23,6 +23,7 @@ func _ready() -> void:
 func _on_new_pressed() -> void:
 	pass
 	#get_tree().change_scene_to_file("res://source/scenes/game.tscn")
+	AudioManager.play("UISelectA")
 	AudioManager.soundtrack_fade_out()
 	get_tree().change_scene_to_file("res://source/settings/dev_room_1.tscn")
 
@@ -35,6 +36,7 @@ func _on_how_pressed() -> void:
 	# tutorial or how-to page
 
 func _on_options_pressed() -> void:
+	AudioManager.play("UISelectA")
 	pass
 
 func _on_credits_pressed() -> void:
@@ -44,3 +46,12 @@ func _on_credits_pressed() -> void:
 func _on_quit_pressed() -> void:
 	blackscreen.visible = true
 	get_tree().quit()
+
+func _on_new_mouse_entered() -> void:
+	AudioManager.play("UIHoverC")
+
+func _on_options_mouse_entered() -> void:
+	AudioManager.play("UIHoverB")
+
+func _on_quit_mouse_entered() -> void:
+	AudioManager.play("UIHoverA")

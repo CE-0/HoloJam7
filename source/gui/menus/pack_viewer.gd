@@ -28,6 +28,7 @@ func clear_grid() -> void:
 
 func _on_view_pack(description: String, cards: Array[Card]) -> void:
 	# TODO: add special note for empty pack
+	AudioManager.play("UIHoverC")
 	clear_grid()
 
 	%Description.text = description
@@ -58,4 +59,5 @@ func _on_view_pack(description: String, cards: Array[Card]) -> void:
 	self.show()
 
 func _on_close_button_pressed() -> void:
+	AudioManager.play("UIHoverA")
 	self.hide()

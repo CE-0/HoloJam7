@@ -19,6 +19,7 @@ func _process(delta: float) -> void:
 	pass 
 
 func toggle_rect():
+	AudioManager.play("UIHoverC")
 	if (rect.visible):
 		rect.hide()
 	else:

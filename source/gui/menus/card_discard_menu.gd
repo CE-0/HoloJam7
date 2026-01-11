@@ -59,6 +59,7 @@ func get_selected_count() -> int:
 func on_next_pressed():
 	if not can_continue:
 		return
+	AudioManager.play("UISelectA")
 	remove_selection() 
 	Global.save_data()
 	self.hide()
