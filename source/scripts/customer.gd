@@ -26,6 +26,9 @@ func move_onscreen() -> void:
 	SignalBus.customer_done_moving.emit()
 
 func move_offscreen() -> void:
+	if text_bubble != null:
+		text_bubble.hide()
+
 	self.scale.x = self.scale.x*-1
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(self, "position", initial_pos + Vector2(exit_dir*1000,0), 0.6)
@@ -39,5 +42,5 @@ func say_order(order: Order) -> void:
 		return
 	%Food.texture = load(order.image_path)
 	text_bubble.show()
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(1.25).timeout
 	text_bubble.hide()

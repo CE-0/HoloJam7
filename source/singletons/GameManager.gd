@@ -23,6 +23,7 @@ var card_select_menu : CardSelectMenu
 var plate: OrderPlate
 var cook: Customer
 var customer: Customer
+var react_bubble: FeedbackBubble
 var order_gen: OrderGenerator
 
 var day_machine: DayStateMachine
@@ -84,7 +85,7 @@ func add_values_to_dish(tastes: Dictionary) -> void:
 	HUD.update_dish_stats(dish_taste)
 	#print(dish_taste)
 
-func eval_score() -> int:
+func eval_score() -> void:
 	# A score of 0 means the dish perfectly matched the taste
 	var score = 0
 
@@ -95,7 +96,18 @@ func eval_score() -> int:
 	score = score + abs(current_order.taste_reqs["umami"] - dish_taste["umami"])
 
 	print("Lost ", score, " points! Good enough! Keep going!")
-	return -score
+	
+	# TODO balance all these
+	var react: int = 0
+	if score < 3:
+		react = 0
+	elif score < 6:
+		react = 1
+	elif score < 10:
+		react = 2
+	react_bubble.reaction_play(react)
+
+	return
 
 func reset_dish_hud() -> void:
 	# Resets order reqs, order name, and dish stats

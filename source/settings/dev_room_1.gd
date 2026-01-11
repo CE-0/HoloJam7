@@ -15,6 +15,7 @@ func _ready() -> void:
 	GameManager.customer = $Customer
 	GameManager.cook = $Haachama
 	GameManager.plate = $OrderPlate
+	GameManager.react_bubble = $FeedbackBubble
 	GameManager.game_start()
 
 func _process(_delta: float) -> void:

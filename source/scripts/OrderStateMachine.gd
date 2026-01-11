@@ -76,10 +76,9 @@ func order_serve_phase() -> void:
 	GameManager.customer.move_offscreen()
 	await SignalBus.customer_done_moving
 
-	# Collect feedback
-	var score: int = GameManager.eval_score()
-	# and do what with the score
-	GameManager.debugHUD.update_feedback_label(str("dish score: ", score))
+	# Collect feedback (in this func)
+	GameManager.eval_score()
+
 	GameManager.reset_dish_hud()
 
 	# Fill hand with cards
