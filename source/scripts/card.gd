@@ -196,6 +196,10 @@ func unfocus() -> void:
 	self.z_index = neutral_z_idx
 	current_state = State.HELD
 
+	var parent = self.get_parent()
+	if parent is Hand:
+		parent.set_hand_focus(null)
+
 func set_neutral_transform(transform_n: Transform2D, zidx: int) -> void:
 	# set the base transform for the card when it is held in hand
 	# focusing on a card will deviate from this neutral state,
@@ -242,7 +246,13 @@ func _on_mouse_exited() -> void:
 		self.unfocus()
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	pass
+	#  Tricky mouse over edge cases
+	if current_state != State.FOCUS:
+		if not GameManager.hand.has_focused_card():
+			if current_state == State.HELD:
+				self.focus_on()
+
+	# Click events
 	if current_state == State.FOCUS:
 		if Input.is_action_just_pressed("play_card"):
 			#print("Playing card!")

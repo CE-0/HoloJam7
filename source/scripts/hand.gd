@@ -56,6 +56,10 @@ func set_hand_focus(card: Card) -> void:
 	# when this is called, the hovered card already did its focus actions
 	# this method updates the hands knowledge of this and unfocuses the old one
 
+	if card == null:
+		focused_card = null
+		return
+
 	var next_idx = held_cards.find(card)
 	# If this is the first card being focused, not a lot to do
 	if focused_card:
@@ -69,6 +73,9 @@ func set_hand_focus(card: Card) -> void:
 		AudioManager.play("CardSelectA")
 	focused_card = card
 	focused_index = next_idx
+
+func has_focused_card() -> bool:
+	return focused_card != null
 
 func arrange_cards() -> void:
 	# determine where cards are held in hand / on screen
