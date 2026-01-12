@@ -83,4 +83,11 @@ func setup_from_card_num(num: int) -> void:
 			verbose_str = verbose_str + str({0.0: "sw.", 1.0: "sa.", 2.0: "so.", 3.0: "um."}[bonus_profile[0]])
 		else:
 			verbose_str = verbose_str + "?"
+
+	# manual centering
+	var newlines: int = verbose_str.count("\n")
+	if newlines == 4:
+		verbose_str = verbose_str.strip_edges()
+	if newlines == 1:
+		verbose_str = verbose_str + "\n"
 	$Control/Verbose.text = verbose_str

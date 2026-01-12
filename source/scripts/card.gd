@@ -158,6 +158,15 @@ func update_face() -> void:
 		# might work but its very wide
 		# for item in bonus_profile:
 		# 	verbose_str = verbose_str + " " + str({0: "sw.", 1: "sa.", 2: "so.", 3: "um."}[int(item)])
+
+	# manual centering
+	var newlines: int = verbose_str.count("\n")
+	if newlines == 4:
+		verbose_str = verbose_str.strip_edges()
+	elif newlines == 1:
+		verbose_str = verbose_str + "\n"
+	elif newlines == 0:
+		verbose_str = verbose_str + "\n\n"
 	$Control/Verbose.text = verbose_str
 
 func focus_on() -> void:

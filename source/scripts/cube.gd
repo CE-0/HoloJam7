@@ -80,5 +80,4 @@ func get_reward_cards(col_a: int, col_b: int, col_c: int, wild: int) -> Array[in
 		last.append(next)
 
 	last.sort()
-	print(last)
 	return last

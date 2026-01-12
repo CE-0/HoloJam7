@@ -57,6 +57,6 @@ func _on_time_penalty(value_s: float) -> void:
 	add_child(next_text)
 	# next_text.position = Vector2(300, 65)
 	next_text.global_position = get_viewport().get_mouse_position() + Vector2(20,-20)
-	var t = "-0:%02d" % round(value_s)
+	var t = "-%d sec" % round(value_s)
 	next_text.start(t, 1.0)
 	decrement_time(value_s)
