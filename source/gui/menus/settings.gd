@@ -34,12 +34,20 @@ func on_sfx_vol_changed(value : float):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), Global.db_converter(value, "SFX"))
 
 func save_settings():
+	AudioManager.play("UISelectA")
 	Global.save_data() 
-	get_tree().change_scene_to_file("res://source/gui/menus/title_screen.tscn")
+	if (get_tree().current_scene.scene_file_path == "res://source/settings/dev_room_1.tscn"):
+		queue_free()
+	else:
+		get_tree().change_scene_to_file("res://source/gui/menus/title_screen.tscn")
 
-func back_to_main(): 
+func back_to_main():
+	AudioManager.play("UISelectA") 
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), Global.db_converter(prev_music_vol, "Music"))
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), Global.db_converter(prev_sfx_vol, "SFX"))
 	Global.music_vol = prev_music_vol
 	Global.sfx_vol = prev_sfx_vol
-	get_tree().change_scene_to_file("res://source/gui/menus/title_screen.tscn")
+	if (get_tree().current_scene.scene_file_path == "res://source/settings/dev_room_1.tscn"):
+		queue_free()
+	else:
+		get_tree().change_scene_to_file("res://source/gui/menus/title_screen.tscn")

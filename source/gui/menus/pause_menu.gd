@@ -51,8 +51,11 @@ func _on_resume_t_pressed() -> void:
 	unpause()
 
 func _on_options_t_pressed() -> void:
-	AudioManager.play("UISelectA")
-	pass
+	AudioManager.play("UISelectA") 
+	var options_menu_prld = preload("res://source/gui/menus/settings.tscn") 
+	var options_menu = options_menu_prld.instantiate() 
+	options_menu.z_index = 4
+	add_child(options_menu)
 
 func _on_quit_t_pressed() -> void:
 	#AudioManager.play("UISelectA")

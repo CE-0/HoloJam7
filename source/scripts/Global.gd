@@ -9,7 +9,7 @@ var music_vol : float
 var sfx_vol : float
 var window_size: int = 720 # manual default 
 
-var deck : Array[int] 
+var deck = null 
 
 var game_finished = false 
 var previous_scene: String = "" # used for some music overrides
@@ -54,7 +54,7 @@ func save_data():
 func db_converter(input, bus): 
 	match bus:
 		"Music":
-			return ((input/100)*10-4)-((100-input)*0.25)
+			return ((input/100)*10-1)-((100-input)*0.25)
 		"SFX":
 			return ((input/100)*10-14)-((100-input)*0.25)
 
@@ -65,10 +65,16 @@ func _ready() -> void:
 	if screen_size.y < 1080 and window_size != 720:
 		set_window_720()
 
-	game_data = load_data(default_save) # temp until newgame / continue options are added
-	#game_data = load_file()
+	#game_data = load_data(default_save) # temp until newgame / continue options are added
+	game_data = load_file()
 	music_vol = game_data["volume_settings"]["music"] 
 	sfx_vol = game_data["volume_settings"]["sfx"] 
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), Global.db_converter(music_vol, "Music"))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), Global.db_converter(sfx_vol, "SFX"))
+	deck = default_deck 
+	save_data() 
+	game_data = load_file() 
+	deck = []
 	
 	for item in game_data["player_data"]["deck"]: # change json floats to ints
 		deck.append(int(item))
