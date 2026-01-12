@@ -1,21 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://cqdrk0nxmcy38"]
+[gd_scene load_steps=7 format=3 uid="uid://cqdrk0nxmcy38"]
 
 [ext_resource type="Texture2D" uid="uid://bjhjuhahf0lpi" path="res://assets/ui/UI_Bottom.png" id="1_64pms"]
 [ext_resource type="Script" uid="uid://cnujwwe0go3jm" path="res://source/gui/menus/game_over_menu.gd" id="1_si2al"]
 [ext_resource type="Texture2D" uid="uid://bvmx30geg4a86" path="res://assets/ui/UI_Clock_cropped.png" id="2_aqkl6"]
 [ext_resource type="FontFile" uid="uid://bb7mjr65gyr7i" path="res://assets/fonts/04B_30__.TTF" id="3_si2al"]
-[ext_resource type="FontFile" uid="uid://b00a6crxmm10e" path="res://assets/fonts/Pix32.ttf" id="5_genlh"]
+[ext_resource type="LabelSettings" uid="uid://3n1dqcw5esdy" path="res://source/gui/menus/button_label.tres" id="5_genlh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_aqkl6"]
 font = ExtResource("3_si2al")
 font_size = 72
 outline_size = 16
-outline_color = Color(0.8627451, 0.4392157, 0.27058825, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_uwynh"]
-font = ExtResource("5_genlh")
-font_size = 48
-outline_size = 14
 outline_color = Color(0.8627451, 0.4392157, 0.27058825, 1)
 
 [node name="GameOverMenu" type="Control"]
@@ -97,7 +91,7 @@ offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "RETRY"
-label_settings = SubResource("LabelSettings_uwynh")
+label_settings = ExtResource("5_genlh")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -119,7 +113,7 @@ offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "MAIN MENU"
-label_settings = SubResource("LabelSettings_uwynh")
+label_settings = ExtResource("5_genlh")
 horizontal_alignment = 1
 vertical_alignment = 1
 

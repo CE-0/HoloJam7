@@ -1,23 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://dafnp6dsfskwx"]
+[gd_scene load_steps=8 format=3 uid="uid://dafnp6dsfskwx"]
 
 [ext_resource type="Script" uid="uid://bh7rh4r16vsmt" path="res://source/gui/menus/title_screen.gd" id="1_rv1hn"]
 [ext_resource type="Texture2D" uid="uid://bvqhr785mj4g8" path="res://assets/title screen/BG.png" id="2_vjx1d"]
 [ext_resource type="Texture2D" uid="uid://8tdn45lsgv4w" path="res://assets/title screen/Haachama.png" id="3_vjx1d"]
 [ext_resource type="Texture2D" uid="uid://b7vlvsqlhu7t" path="res://assets/title screen/Buttons.png" id="4_i1i7k"]
+[ext_resource type="LabelSettings" uid="uid://ccnvfahql124c" path="res://assets/fonts/label settings/game_label_settings.tres" id="5_dcpt1"]
 [ext_resource type="Texture2D" uid="uid://b6x8uy4y07ose" path="res://assets/title screen/Button.png" id="5_w3y3w"]
-[ext_resource type="FontFile" uid="uid://bb7mjr65gyr7i" path="res://assets/fonts/04B_30__.TTF" id="6_v25cr"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_6x4yg"]
-font = ExtResource("6_v25cr")
-font_size = 136
-font_color = Color(0.87058824, 0.38039216, 0.4117647, 1)
-outline_size = 12
-
-[sub_resource type="LabelSettings" id="LabelSettings_dcpt1"]
-font = ExtResource("6_v25cr")
-font_size = 76
-font_color = Color(0.87058824, 0.38039216, 0.4117647, 1)
-outline_size = 10
+[ext_resource type="LabelSettings" uid="uid://b4e8ho22vk5ic" path="res://source/gui/menus/menu_button_label_settings.tres" id="7_dcpt1"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -66,8 +55,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 85.0
-offset_right = -85.0
+offset_left = 12.0
+offset_top = -25.0
+offset_right = -11.0
+offset_bottom = 299.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 5
@@ -83,7 +74,7 @@ layout_mode = 2
 [node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer/CenterContainer"]
 layout_mode = 2
 text = "GAME NAME"
-label_settings = SubResource("LabelSettings_6x4yg")
+label_settings = ExtResource("5_dcpt1")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -92,7 +83,7 @@ layout_mode = 2
 
 [node name="Buttons" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 86
+theme_override_constants/separation = 40
 
 [node name="VSpacer" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer/Buttons"]
 custom_minimum_size = Vector2(0, -10.82)
@@ -111,7 +102,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "START"
-label_settings = SubResource("LabelSettings_dcpt1")
+label_settings = ExtResource("7_dcpt1")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -142,16 +133,26 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "OPTIONS"
-label_settings = SubResource("LabelSettings_dcpt1")
+label_settings = ExtResource("7_dcpt1")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Credits" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Buttons"]
+[node name="Credits" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer/Buttons"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
-theme_override_font_sizes/font_size = 44
-text = "Credits"
+texture_normal = ExtResource("5_w3y3w")
+
+[node name="CreditsLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/Buttons/Credits"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "CREDITS"
+label_settings = ExtResource("7_dcpt1")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Quit" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer/Buttons"]
 unique_name_in_owner = true
@@ -166,7 +167,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "QUIT"
-label_settings = SubResource("LabelSettings_dcpt1")
+label_settings = ExtResource("7_dcpt1")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -191,6 +192,7 @@ color = Color(0, 0, 0, 1)
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Buttons/How" to="." method="_on_how_pressed"]
 [connection signal="mouse_entered" from="MarginContainer/VBoxContainer/HBoxContainer/Buttons/Options" to="." method="_on_options_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Buttons/Options" to="." method="_on_options_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/HBoxContainer/Buttons/Credits" to="." method="_on_options_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Buttons/Credits" to="." method="_on_credits_pressed"]
 [connection signal="mouse_entered" from="MarginContainer/VBoxContainer/HBoxContainer/Buttons/Quit" to="." method="_on_quit_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Buttons/Quit" to="." method="_on_quit_pressed"]

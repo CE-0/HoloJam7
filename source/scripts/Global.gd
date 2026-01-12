@@ -7,9 +7,14 @@ var save_path = "user://hcmsavedata.json"
 var game_data : Dictionary
 var music_vol : float
 var sfx_vol : float
-var window_size: int = 720 # manual default
+var window_size: int = 720 # manual default 
 
-var deck : Array[int]
+var deck : Array[int] 
+
+var game_finished = false 
+
+#Default data for the game 
+var default_deck = [1, 2, 3, 4, 1, 2, 3, 4, 6, 8]
 
 func check_file_exists(file_path: String) -> bool:
 	return FileAccess.file_exists(file_path)
@@ -43,7 +48,14 @@ func save_data():
 		file.close()
 	else:
 		print("Error: Could not save file to path")
-	return
+	return 
+
+func db_converter(input, bus): 
+	match bus:
+		"Music":
+			return ((input/100)*10-4)-((100-input)*0.25)
+		"SFX":
+			return ((input/100)*10-14)-((100-input)*0.25)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

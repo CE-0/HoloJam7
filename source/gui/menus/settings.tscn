@@ -1,0 +1,145 @@
+[gd_scene load_steps=10 format=3 uid="uid://dq4bjgb8c14c4"]
+
+[ext_resource type="Script" uid="uid://dlfqn1ffyk5to" path="res://source/gui/menus/settings.gd" id="1_fmfve"]
+[ext_resource type="Texture2D" uid="uid://bvqhr785mj4g8" path="res://assets/title screen/BG.png" id="2_h2m2m"]
+[ext_resource type="Texture2D" uid="uid://b6x8uy4y07ose" path="res://assets/title screen/Button.png" id="3_u6hku"]
+[ext_resource type="LabelSettings" uid="uid://bkbnpeqi6e3ib" path="res://assets/fonts/label settings/text_label_settings.tres" id="3_y1njn"]
+[ext_resource type="LabelSettings" uid="uid://b4e8ho22vk5ic" path="res://source/gui/menus/menu_button_label_settings.tres" id="4_y1njn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u6hku"]
+bg_color = Color(0.87563914, 0.19595614, 0.19595614, 1)
+shadow_color = Color(0.9842577, 0.59138125, 0.59138125, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y1njn"]
+bg_color = Color(0.8745098, 0.19607843, 0.19607843, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mscw4"]
+bg_color = Color(0.8745098, 0.19607843, 0.19607843, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pfglu"]
+bg_color = Color(0.8745098, 0.19607843, 0.19607843, 1)
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_fmfve")
+
+[node name="Bg" type="TextureRect" parent="."]
+z_index = -4
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_h2m2m")
+
+[node name="Settings Container" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 92.0
+offset_right = 464.0
+offset_bottom = 92.0
+
+[node name="MarginContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 330.0
+offset_top = 113.0
+offset_right = 919.0
+offset_bottom = 224.0
+scale = Vector2(1.6400013, 1.8000003)
+theme_override_constants/h_separation = 29
+columns = 2
+
+[node name="Buttons" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 382.0
+offset_top = 827.0
+offset_right = 1624.0
+offset_bottom = 993.0
+theme_override_constants/separation = 200
+
+[node name="Back" type="TextureButton" parent="Buttons"]
+layout_mode = 2
+texture_normal = ExtResource("3_u6hku")
+
+[node name="Label" type="Label" parent="Buttons/Back"]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 46.0
+offset_right = 392.0
+offset_bottom = 123.0
+text = "BACK"
+label_settings = ExtResource("4_y1njn")
+
+[node name="Save" type="TextureButton" parent="Buttons"]
+layout_mode = 2
+texture_normal = ExtResource("3_u6hku")
+
+[node name="Label" type="Label" parent="Buttons/Save"]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 41.0
+offset_right = 397.0
+offset_bottom = 118.0
+text = "SAVE"
+label_settings = ExtResource("4_y1njn")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 636.0
+offset_top = 388.0
+offset_right = 869.0
+offset_bottom = 430.0
+text = "Music Volume"
+label_settings = ExtResource("3_y1njn")
+
+[node name="Music Volume Slider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 1012.0
+offset_top = 409.0
+offset_right = 1339.0
+offset_bottom = 430.0
+scale = Vector2(1.08, 1.3268753)
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_constants/center_grabber = 0
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_u6hku")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_y1njn")
+tick_count = 10
+
+[node name="Volume Display" type="Label" parent="Music Volume Slider"]
+layout_mode = 0
+offset_left = 363.8889
+offset_right = 403.8889
+offset_bottom = 23.0
+label_settings = ExtResource("3_y1njn")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 643.0
+offset_top = 549.0
+offset_right = 876.0
+offset_bottom = 591.0
+text = "SFX Volume"
+label_settings = ExtResource("3_y1njn")
+
+[node name="SFX Volume Slider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 1012.0
+offset_top = 570.0
+offset_right = 1339.0
+offset_bottom = 586.0
+scale = Vector2(1.08, 1.327)
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_mscw4")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_pfglu")
+
+[node name="Volume Display" type="Label" parent="SFX Volume Slider"]
+layout_mode = 0
+offset_left = 363.889
+offset_right = 403.889
+offset_bottom = 23.0
+label_settings = ExtResource("3_y1njn")
+
+[connection signal="button_down" from="Buttons/Back" to="." method="back_to_main"]
+[connection signal="button_down" from="Buttons/Save" to="." method="save_settings"]
+[connection signal="value_changed" from="Music Volume Slider" to="." method="on_music_vol_changed"]
+[connection signal="value_changed" from="SFX Volume Slider" to="." method="on_sfx_vol_changed"]

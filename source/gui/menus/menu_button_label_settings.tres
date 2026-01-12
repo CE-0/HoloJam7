@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://b4e8ho22vk5ic"]
+
+[ext_resource type="FontFile" uid="uid://bb7mjr65gyr7i" path="res://assets/fonts/04B_30__.TTF" id="1_w44vf"]
+
+[resource]
+font = ExtResource("1_w44vf")
+font_size = 76
+font_color = Color(0.87058824, 0.38039216, 0.4117647, 1)
+outline_size = 10

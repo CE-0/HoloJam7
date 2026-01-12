@@ -40,8 +40,7 @@ func _on_options_pressed() -> void:
 	pass
 
 func _on_credits_pressed() -> void:
-	pass
-	#get_tree().change_scene_to_file("res://source/gui/credits.tscn")
+	get_tree().change_scene_to_file("res://source/gui/menus/credits.tscn")
 
 func _on_quit_pressed() -> void:
 	blackscreen.visible = true

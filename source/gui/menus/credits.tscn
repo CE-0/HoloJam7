@@ -1,0 +1,96 @@
+[gd_scene load_steps=8 format=3 uid="uid://dwj8is7voebbq"]
+
+[ext_resource type="Texture2D" uid="uid://bvqhr785mj4g8" path="res://assets/title screen/BG.png" id="1_ktamy"]
+[ext_resource type="Script" uid="uid://7wauyjgpmai1" path="res://source/gui/menus/credits.gd" id="1_swan8"]
+[ext_resource type="LabelSettings" uid="uid://ccnvfahql124c" path="res://assets/fonts/label settings/game_label_settings.tres" id="2_qs1l1"]
+[ext_resource type="LabelSettings" uid="uid://bkbnpeqi6e3ib" path="res://assets/fonts/label settings/text_label_settings.tres" id="3_qs1l1"]
+[ext_resource type="FontFile" uid="uid://bb7mjr65gyr7i" path="res://assets/fonts/04B_30__.TTF" id="3_xemgq"]
+[ext_resource type="Texture2D" uid="uid://b6x8uy4y07ose" path="res://assets/title screen/Button.png" id="5_swan8"]
+[ext_resource type="LabelSettings" uid="uid://3n1dqcw5esdy" path="res://source/gui/menus/button_label.tres" id="6_hpqrb"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_swan8")
+
+[node name="Bg" type="TextureRect" parent="."]
+z_index = -1
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_ktamy")
+
+[node name="Thanks" type="Label" parent="."]
+layout_mode = 0
+offset_right = 1935.0
+offset_bottom = 275.0
+theme_override_font_sizes/font_size = 16
+text = "THANKS FOR 
+PLAYING!!!"
+label_settings = ExtResource("2_qs1l1")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+offset_left = 650.0
+offset_top = 355.0
+offset_right = 1370.0
+offset_bottom = 562.0
+theme_override_constants/separation = 21
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8484845, 0.23451988, 0.27381372, 1)
+theme_override_fonts/font = ExtResource("3_xemgq")
+theme_override_font_sizes/font_size = 35
+text = "EMPLOYEES OF THE MONTH:"
+horizontal_alignment = 1
+
+[node name="Credits List" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Art" type="Label" parent="VBoxContainer/Credits List"]
+layout_mode = 2
+text = "Art: Yozorani"
+label_settings = ExtResource("3_qs1l1")
+
+[node name="Programming" type="Label" parent="VBoxContainer/Credits List"]
+layout_mode = 2
+text = "Programming: Sailor Ares, CE-0"
+label_settings = ExtResource("3_qs1l1")
+
+[node name="Music and Sound" type="Label" parent="VBoxContainer/Credits List"]
+layout_mode = 2
+text = "Music/SFX: Aefenn"
+label_settings = ExtResource("3_qs1l1")
+
+[node name="Design and Coordination" type="Label" parent="VBoxContainer/Credits List"]
+layout_mode = 2
+text = "Planning and Co-ordination: StarlitVoid"
+label_settings = ExtResource("3_qs1l1")
+
+[node name="Main Menu Button" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 703.0
+offset_top = 826.0
+offset_right = 1224.0
+offset_bottom = 992.0
+scale = Vector2(0.8400012, 0.84000003)
+texture_normal = ExtResource("5_swan8")
+
+[node name="Label" type="Label" parent="Main Menu Button"]
+layout_mode = 0
+offset_left = 151.19026
+offset_top = 58.333332
+offset_right = 351.19025
+offset_bottom = 106.33333
+text = "MAIN MENU"
+label_settings = ExtResource("6_hpqrb")
+
+[connection signal="pressed" from="Main Menu Button" to="." method="on_main_menu_pressed"]
