@@ -29,7 +29,7 @@ func update_grid():
 	for x in range(0, len(Global.deck)):
 		var card = card_option.instantiate() 
 		deck_grid.add_child(card)
-		card.deck_idx = x 
+		card.deck_idx = x
 		card.get_child(0, true).setup_from_card_num(Global.deck[x])
 		card.get_child(0, true).set_count(-1)
 

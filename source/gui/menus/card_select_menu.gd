@@ -27,6 +27,11 @@ func _process(delta: float) -> void:
 	else:
 		%Confirm.modulate = Color.WHITE
 
+func start() -> void:
+	for child in new_choices_grid.get_children():
+		child.reset()
+	self.show()
+
 func get_selected(): 
 	var cards_picked = [] 
 	for c in new_choices_grid.get_children():
@@ -50,7 +55,7 @@ func update_grid():
 	for x in new_cards:
 		var card = card_option.instantiate() 
 		new_choices_grid.add_child(card)
-		card.deck_idx = x 
+		card.deck_idx = x
 		card.get_child(0, true).setup_from_card_num(x)
 		card.get_child(0, true).set_count(-1)
 

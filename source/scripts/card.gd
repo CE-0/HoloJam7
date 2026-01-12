@@ -81,7 +81,10 @@ func get_taste_values() -> Dictionary:
 	# read or rng the power
 	var power = 0
 	if bonus_power is Array:
-		power = randi_range(bonus_power[0], bonus_power[1])
+		if len(bonus_power) == 1:
+			power = bonus_power[0]
+		else:
+			power = randi_range(bonus_power[0], bonus_power[1])
 	else:
 		power = bonus_power
 
@@ -89,7 +92,7 @@ func get_taste_values() -> Dictionary:
 	var target = bonus_profile.pick_random()
 
 	# apply bonus
-	var idx = ["sweet", "salty", "soul", "umami"][target]
+	var idx = ["sweet", "salty", "sour", "umami"][target]
 	last[idx] = last[idx] + power
 	return last
 
