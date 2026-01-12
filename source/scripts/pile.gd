@@ -14,6 +14,7 @@ var cards: Array[Card] = []
 
 func _ready() -> void:
 	pass
+	$Glow.visible = false
 	update_count()
 	set_card_backs()
 
@@ -127,3 +128,10 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 	# View the piles in the pack_viewer
 	if Input.is_action_just_pressed("view_pile"):
 		SignalBus.view_pack.emit(description, cards)
+
+func _on_area_2d_mouse_entered() -> void:
+	if cards.size() > 0:
+		$Glow.visible = true
+
+func _on_area_2d_mouse_exited() -> void:
+	$Glow.visible = false

@@ -44,6 +44,7 @@ func unpause() -> void:
 	tween.tween_property(pause_menu_ui, "position:y", pause_ui_pos_off.y, 0.1)
 	await get_tree().create_timer(0.1).timeout
 
+	$Settings.hide()
 	self.hide()
 	
 func _on_resume_t_pressed() -> void:
@@ -52,7 +53,8 @@ func _on_resume_t_pressed() -> void:
 
 func _on_options_t_pressed() -> void:
 	AudioManager.play("UISelectA")
-	pass
+	$Settings.open()
+	$Settings.show()
 
 func _on_quit_t_pressed() -> void:
 	#AudioManager.play("UISelectA")

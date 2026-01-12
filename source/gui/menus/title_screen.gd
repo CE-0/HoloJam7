@@ -35,7 +35,9 @@ func _on_how_pressed() -> void:
 
 func _on_options_pressed() -> void:
 	AudioManager.play("UISelectA")
-	pass
+	$Settings.open()
+	$Settings.show()
+	#get_tree().change_scene_to_file("res://source/gui/menus/settings.tscn")
 
 func _on_credits_pressed() -> void:
 	get_tree().change_scene_to_file("res://source/gui/menus/credits.tscn")

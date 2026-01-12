@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dq4bjgb8c14c4"]
+[gd_scene load_steps=11 format=3 uid="uid://dq4bjgb8c14c4"]
 
 [ext_resource type="Script" uid="uid://dlfqn1ffyk5to" path="res://source/gui/menus/settings.gd" id="1_fmfve"]
 [ext_resource type="Texture2D" uid="uid://bvqhr785mj4g8" path="res://assets/title screen/BG.png" id="2_h2m2m"]
 [ext_resource type="Texture2D" uid="uid://b6x8uy4y07ose" path="res://assets/title screen/Button.png" id="3_u6hku"]
 [ext_resource type="LabelSettings" uid="uid://bkbnpeqi6e3ib" path="res://assets/fonts/label settings/text_label_settings.tres" id="3_y1njn"]
+[ext_resource type="Texture2D" uid="uid://qqbhr3stutt7" path="res://assets/title screen/ButtonDark.png" id="4_mscw4"]
 [ext_resource type="LabelSettings" uid="uid://b4e8ho22vk5ic" path="res://source/gui/menus/menu_button_label_settings.tres" id="4_y1njn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u6hku"]
@@ -58,6 +59,7 @@ theme_override_constants/separation = 200
 [node name="Back" type="TextureButton" parent="Buttons"]
 layout_mode = 2
 texture_normal = ExtResource("3_u6hku")
+texture_hover = ExtResource("4_mscw4")
 
 [node name="Label" type="Label" parent="Buttons/Back"]
 layout_mode = 0
@@ -71,6 +73,7 @@ label_settings = ExtResource("4_y1njn")
 [node name="Save" type="TextureButton" parent="Buttons"]
 layout_mode = 2
 texture_normal = ExtResource("3_u6hku")
+texture_hover = ExtResource("4_mscw4")
 
 [node name="Label" type="Label" parent="Buttons/Save"]
 layout_mode = 0
@@ -140,6 +143,8 @@ offset_bottom = 23.0
 label_settings = ExtResource("3_y1njn")
 
 [connection signal="button_down" from="Buttons/Back" to="." method="back_to_main"]
+[connection signal="mouse_entered" from="Buttons/Back" to="." method="_on_back_mouse_entered"]
 [connection signal="button_down" from="Buttons/Save" to="." method="save_settings"]
+[connection signal="mouse_entered" from="Buttons/Save" to="." method="_on_save_mouse_entered"]
 [connection signal="value_changed" from="Music Volume Slider" to="." method="on_music_vol_changed"]
 [connection signal="value_changed" from="SFX Volume Slider" to="." method="on_sfx_vol_changed"]

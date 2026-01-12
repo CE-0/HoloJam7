@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://b2ii1dwbjera2"]
+[gd_scene load_steps=8 format=3 uid="uid://b2ii1dwbjera2"]
 
 [ext_resource type="Script" uid="uid://bbck4r1248pvy" path="res://source/gui/menus/pause_menu.gd" id="1_u8v28"]
 [ext_resource type="Texture2D" uid="uid://bvqhr785mj4g8" path="res://assets/title screen/BG.png" id="2_yxswi"]
 [ext_resource type="Texture2D" uid="uid://bvmx30geg4a86" path="res://assets/ui/UI_Clock_cropped.png" id="3_0ifhu"]
 [ext_resource type="Texture2D" uid="uid://2rrjknuptjgd" path="res://assets/ui/UI_Clock_cropped_dark.png" id="4_5j4if"]
 [ext_resource type="FontFile" uid="uid://b00a6crxmm10e" path="res://assets/fonts/Pix32.ttf" id="5_6r2ei"]
+[ext_resource type="PackedScene" uid="uid://dq4bjgb8c14c4" path="res://source/gui/menus/settings.tscn" id="6_5j4if"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lpyh8"]
 font = ExtResource("5_6r2ei")
@@ -131,6 +132,11 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
+
+[node name="Settings" parent="." instance=ExtResource("6_5j4if")]
+visible = false
+z_index = 40
+layout_mode = 0
 
 [connection signal="mouse_entered" from="PauseFrame/MarginContainer/CenterContainer/HBoxContainer/ResumeT" to="." method="_on_resume_t_mouse_entered"]
 [connection signal="pressed" from="PauseFrame/MarginContainer/CenterContainer/HBoxContainer/ResumeT" to="." method="_on_resume_t_pressed"]

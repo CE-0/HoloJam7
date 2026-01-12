@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dafnp6dsfskwx"]
+[gd_scene load_steps=10 format=3 uid="uid://dafnp6dsfskwx"]
 
 [ext_resource type="Script" uid="uid://bh7rh4r16vsmt" path="res://source/gui/menus/title_screen.gd" id="1_rv1hn"]
 [ext_resource type="Texture2D" uid="uid://bvqhr785mj4g8" path="res://assets/title screen/BG.png" id="2_vjx1d"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b6x8uy4y07ose" path="res://assets/title screen/Button.png" id="5_w3y3w"]
 [ext_resource type="Texture2D" uid="uid://qqbhr3stutt7" path="res://assets/title screen/ButtonDark.png" id="7_dcpt1"]
 [ext_resource type="LabelSettings" uid="uid://b4e8ho22vk5ic" path="res://source/gui/menus/menu_button_label_settings.tres" id="8_6x4yg"]
+[ext_resource type="PackedScene" uid="uid://dq4bjgb8c14c4" path="res://source/gui/menus/settings.tscn" id="9_senlg"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -195,6 +196,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="Settings" parent="." instance=ExtResource("9_senlg")]
+visible = false
+z_index = 35
+layout_mode = 0
 
 [connection signal="mouse_entered" from="MarginContainer/VBoxContainer/HBoxContainer/Buttons/New" to="." method="_on_new_mouse_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Buttons/New" to="." method="_on_new_pressed"]

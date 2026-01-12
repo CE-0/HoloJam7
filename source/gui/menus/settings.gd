@@ -21,6 +21,14 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass 
 
+func open():
+	music_slider.value = Global.music_vol 
+	sfx_slider.value = Global.sfx_vol 
+	prev_music_vol = Global.music_vol
+	prev_sfx_vol = Global.sfx_vol
+	music_vol_display.text = str(floori(music_slider.value))
+	sfx_vol_display.text = str(floori(sfx_slider.value))
+
 func on_music_vol_changed(value : float): 
 	Global.music_vol = value
 	#Global.game_data["volume_settings"]["music"] = value 
@@ -35,11 +43,19 @@ func on_sfx_vol_changed(value : float):
 
 func save_settings():
 	Global.save_data() 
-	get_tree().change_scene_to_file("res://source/gui/menus/title_screen.tscn")
+	self.hide()
+	#get_tree().change_scene_to_file("res://source/gui/menus/title_screen.tscn")
 
 func back_to_main(): 
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), Global.db_converter(prev_music_vol, "Music"))
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), Global.db_converter(prev_sfx_vol, "SFX"))
 	Global.music_vol = prev_music_vol
 	Global.sfx_vol = prev_sfx_vol
-	get_tree().change_scene_to_file("res://source/gui/menus/title_screen.tscn")
+	self.hide()
+	#get_tree().change_scene_to_file("res://source/gui/menus/title_screen.tscn")
+
+func _on_back_mouse_entered() -> void:
+	AudioManager.play("UIHoverA")
+
+func _on_save_mouse_entered() -> void:
+	AudioManager.play("UIHoverC")
