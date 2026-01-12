@@ -9,7 +9,7 @@ func reveal() -> void:
 	self.modulate = Color.TRANSPARENT
 	self.show()
 	var tween: Tween = get_tree().create_tween()
-	tween.tween_property(self, "modulate", Color.WHITE, 1.0)
+	tween.tween_property(self, "modulate", Color.WHITE, 2.0)
 
 func _on_retry_pressed() -> void:
 	self.hide()
@@ -17,6 +17,7 @@ func _on_retry_pressed() -> void:
 
 func _on_main_menu_pressed() -> void:
 	self.hide()
+	AudioManager.soundtrack_fade_out()
 	get_tree().change_scene_to_file("res://source/gui/menus/title_screen.tscn")
 
 func _on_retry_mouse_entered() -> void:

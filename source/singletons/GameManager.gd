@@ -104,7 +104,7 @@ func eval_score() -> bool:
 	if sum == 0:
 		score = 100
 
-	print("Lost ", score, " points! Good enough! Keep going!")
+	print("Lost ", score, " points!")
 
 	# Results table
 	# TODO balance all these

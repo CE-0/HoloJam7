@@ -63,7 +63,7 @@ func soundtrack_fade_out() -> void:
 	sound_node.stream_paused = true
 	sound_node.volume_db = base_volume
 
-func soundtrack_fade_in() -> void:
+func soundtrack_fade_in(fade_length: float = 3.0) -> void:
 	print("fade in ", current_ost)
 	var sound_node: AudioStreamPlayer2D = get_node_or_null(current_ost)
 	assert(sound_node != null, str("Sound ", current_ost, " does not exist"))
@@ -73,7 +73,7 @@ func soundtrack_fade_in() -> void:
 	await get_tree().create_timer(0.1).timeout # avoid click
 	soundtrack_start()
 	ost_tween = get_tree().create_tween()
-	ost_tween.tween_property(sound_node, "volume_db", target_volume, 2.9)
+	ost_tween.tween_property(sound_node, "volume_db", target_volume, fade_length)
 
 func play(sound: NodePath):
 	# sound is the name of the node of the sound to play
