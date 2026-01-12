@@ -13,8 +13,11 @@ var new_cards = null
 func _ready() -> void: 
 	GameManager.card_select_menu = self
 	$"Control/Add Label".text = "Pick %d cards" % MAX_SELECT_COUNT
-	#new_cards = new_choices_grid.get_children()
-	new_cards = [1,2,3,4,11] # debug
+
+	# Pick new cards to display
+	# TODO: adjust balance by day
+	new_cards = CardCube.get_reward_cards(1,1,1,2)
+	# new_cards = [1,2,3,4,11] # debug
 	update_grid()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
